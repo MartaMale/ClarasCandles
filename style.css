@@ -4,6 +4,12 @@ body {
   background: #fff;
   color: #1a1a1a;
 }
+footer {
+  border-top: 1px solid #eee;
+  text-align: center;
+  padding: 40px;
+  font-size: 0.9rem;
+}
 
 header {
   position: sticky;
