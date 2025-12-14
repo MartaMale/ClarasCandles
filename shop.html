@@ -26,22 +26,18 @@
     <a href="index.html">Home</a>
     <a href="shop.html">Shop</a>
     <a href="about.html">About</a>
-    <div id="cart-drawer">
-  <div class="cart-header">
-    <h3>Your Cart</h3>
-    <button onclick="closeCart()">✕</button>
-  </div>
-
-  <div id="cart-items"></div>
-
-  <div class="cart-footer">
-    <strong id="cart-total"></strong>
-    <a href="checkout.html" class="checkout-btn">Checkout</a>
-  </div>
-</div>
-<a href="#" onclick="openCart()">Cart</a>
-
+    <button class="cart-button" onclick="toggleCart()">🛒</button>
   </nav>
+</header>
+
+<!-- Slide-out cart drawer -->
+<div id="cart-drawer" class="cart-drawer">
+  <h3>Your Cart</h3>
+  <div id="cart-items"></div>
+  <p id="cart-total"></p>
+  <a href="checkout.html" class="button">Checkout</a>
+</div>
+
 </header>
 
 <div class="container">
