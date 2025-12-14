@@ -152,4 +152,50 @@ nav a:hover {
   text-decoration: none;
   color: black;
 }
+/* Cart Drawer Styles */
+.cart-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: -360px; /* hidden by default */
+  width: 320px;
+  max-width: 80%;
+  height: 100%;
+  background: white;
+  box-shadow: -4px 0 20px rgba(0,0,0,0.15);
+  padding: 30px;
+  transition: right 0.3s ease;
+  z-index: 200;
+  overflow-y: auto;
+}
+
+.cart-drawer.open {
+  right: 0; /* slides in */
+}
+
+.cart-drawer h3 {
+  margin-top: 0;
+}
+
+.cart-drawer button.button {
+  width: 100%;
+  margin-top: 15px;
+}
+
+@media (max-width: 768px) {
+  .cart-drawer {
+    width: 80%;
+    padding: 20px;
+  }
+
+  .cart-button {
+    font-size: 1.3rem;
+  }
+}
 
