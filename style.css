@@ -27,6 +27,8 @@ nav a {
   text-decoration: none;
   color: #1a1a1a;
   font-size: 0.95rem;
+  <a href="#" onclick="openCart()">Cart</a>
+
 }
 
 nav a:hover {
