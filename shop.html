@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shop – Clara's Candles</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>Clara’s Candles</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="about.html">About</a>
+  </nav>
+</header>
+
+<div class="container">
+  <h2>Our Candles</h2>
+
+  <div class="products">
+    <div class="product">
+      <h3>Vanilla Bean</h3>
+      <p>Warm and cozy.</p>
+      <strong>$18</strong>
+      <button onclick="addToCart('Vanilla Bean', 18)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <h3>Lavender Calm</h3>
+      <p>Relaxing floral scent.</p>
+      <strong>$18</strong>
+      <button onclick="addToCart('Lavender Calm', 18)">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <h3>Cedarwood Spice</h3>
+      <p>Earthy and bold.</p>
+      <strong>$20</strong>
+      <button onclick="addToCart('Cedarwood Spice', 20)">Add to Cart</button>
+    </div>
+  </div>
+
+  <div class="cart">
+    <h3>Your Cart</h3>
+    <div id="cart-items"></div>
+    <strong id="cart-total"></strong>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
