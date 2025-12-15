@@ -1,7 +1,7 @@
-
+// ================= CART STATE =================
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-
+// ================= CART TOGGLE =================
 function toggleCart() {
   document.getElementById("cart-drawer").classList.toggle("open");
   document.getElementById("cart-overlay").classList.toggle("open");
@@ -12,39 +12,80 @@ function closeCart() {
   document.getElementById("cart-overlay").classList.remove("open");
 }
 
+// ================= ADD TO CART =================
 function addToCart(name, size, price) {
-  cart.push({ name, size, price });
-  localStorage.setItem("cart", JSON.stringify(cart));
-  renderCart();
+  const existing = cart.find(item => item.name === name && item.size === size);
+
+  if (existing) {
+    existing.qty += 1;
+  } else {
+    cart.push({ name, size, price, qty: 1 });
+  }
+
+  saveCart();
   toggleCart();
 }
 
+// ================= UPDATE QTY =================
+function updateQty(index, change) {
+  cart[index].qty += change;
+
+  if (cart[index].qty <= 0) {
+    cart.splice(index, 1);
+  }
+
+  saveCart();
+}
+
+// ================= REMOVE ITEM =================
+function removeItem(index) {
+  cart.splice(index, 1);
+  saveCart();
+}
+
+// ================= SAVE + RENDER =================
+function saveCart() {
+  localStorage.setItem("cart", JSON.stringify(cart));
+  renderCart();
+}
 
 function renderCart() {
-  const cartItems = document.getElementById("cart-items");
-  const cartTotal = document.getElementById("cart-total");
-  if (!cartItems || !cartTotal) return;
+  const items = document.getElementById("cart-items");
+  const totalEl = document.getElementById("cart-total");
+  const countEl = document.getElementById("cart-count");
 
-  cartItems.innerHTML = "";
+  if (!items || !totalEl) return;
+
+  items.innerHTML = "";
   let total = 0;
+  let count = 0;
 
-  cart.forEach(item => {
-    cartItems.innerHTML += `
+  cart.forEach((item, index) => {
+    total += item.price * item.qty;
+    count += item.qty;
+
+    items.innerHTML += `
       <div class="cart-item">
         <div>
           <strong>${item.name}</strong><br>
-          <span>${item.size}</span>
+          <small>${item.size}</small>
+          <div class="cart-controls">
+            <button onclick="updateQty(${index}, -1)">−</button>
+            ${item.qty}
+            <button onclick="updateQty(${index}, 1)">+</button>
+            <span class="remove-item" onclick="removeItem(${index})">❌</span>
+          </div>
         </div>
-        <span>$${item.price}</span>
+        <span>$${item.price * item.qty}</span>
       </div>
     `;
-    total += item.price;
   });
 
-  cartTotal.innerText = "Total: $" + total;
+  totalEl.innerText = "Total: $" + total;
+  if (countEl) countEl.innerText = count;
 }
 
-
+// ================= PRODUCTS =================
 const productsList = [
   "Vanilla Bean","Lavender Calm","Cedarwood Spice","Eucalyptus Mint",
   "Rose Garden","Citrus Sunshine","Ocean Breeze","Pumpkin Spice",
@@ -60,20 +101,21 @@ function displayProducts() {
   productsDiv.innerHTML = "";
 
   productsList.forEach(name => {
-    const productEl = document.createElement("div");
-    productEl.className = "product";
+    const product = document.createElement("div");
+    product.className = "product";
 
-    productEl.innerHTML = `
+    product.innerHTML = `
       <img src="https://via.placeholder.com/300x300?text=${encodeURIComponent(name)}">
       <h3>${name}</h3>
       <button onclick="addToCart('${name}','8oz',12)">Add 8oz – $12</button>
       <button onclick="addToCart('${name}','16oz',18)">Add 16oz – $18</button>
     `;
 
-    productsDiv.appendChild(productEl);
+    productsDiv.appendChild(product);
   });
 }
 
 // ================= INIT =================
 renderCart();
 displayProducts();
+
