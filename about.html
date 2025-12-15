@@ -1,16 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>About – Clara's Candles</title>
+  <meta charset="UTF-8">
+  <title>About – Clara’s Candles</title>
+
   <link rel="stylesheet" href="style.css">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-<!-- Header / Navigation -->
 <header>
   <h1>Clara’s Candles</h1>
   <nav>
@@ -21,30 +23,34 @@
   </nav>
 </header>
 
-<!-- Slide-out cart drawer -->
+<div id="cart-overlay" class="cart-overlay" onclick="closeCart()"></div>
+
 <div id="cart-drawer" class="cart-drawer">
+  <button class="cart-close" onclick="closeCart()">✕</button>
   <h3>Your Cart</h3>
   <div id="cart-items"></div>
   <p id="cart-total"></p>
-  <a href="checkout.html" class="button">Checkout</a>
+  <a href="#" class="button">Checkout</a>
 </div>
 
-<!-- Page Content -->
 <div class="container">
   <h2>Our Story</h2>
   <p>
     Clara’s Candles began as a passion project rooted in creativity, comfort,
-    and the joy of making something by hand. Each candle is carefully poured
-    in small batches using quality ingredients.
+    and the joy of making something by hand.
   </p>
 
   <p>
-    Our mission is simple: create candles that make your home feel warm,
-    calm, and inviting.
+    Each candle is carefully hand-poured in small batches using quality
+    ingredients to bring warmth and calm into your home.
+  </p>
+
+  <p>
+    Our mission is simple: create candles that make everyday moments feel
+    intentional, cozy, and beautiful.
   </p>
 </div>
 
-<!-- Footer -->
 <footer>
   <p>© 2025 Clara’s Candles</p>
   <p>Email: clarascandles@email.com</p>
@@ -53,6 +59,48 @@
     <a href="#">Facebook</a>
   </p>
 </footer>
+
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function toggleCart() {
+  document.getElementById("cart-drawer").classList.toggle("open");
+  document.getElementById("cart-overlay").classList.toggle("open");
+}
+
+function closeCart() {
+  document.getElementById("cart-drawer").classList.remove("open");
+  document.getElementById("cart-overlay").classList.remove("open");
+}
+
+function renderCart() {
+  const items = document.getElementById("cart-items");
+  const totalEl = document.getElementById("cart-total");
+  items.innerHTML = "";
+  let total = 0;
+
+  cart.forEach(item => {
+    items.innerHTML += `
+      <div class="cart-item">
+        <div>
+          <strong>${item.name}</strong><br>
+          <small>${item.size}</small>
+        </div>
+        <span>$${item.price}</span>
+      </div>
+    `;
+    total += item.price;
+  });
+
+  totalEl.innerText = "Total: $" + total;
+}
+
+renderCart();
+</script>
+
+</body>
+</html>
+
 
 <!-- Script -->
 <script src="script.js"></script>
