@@ -1,24 +1,29 @@
-// Cart setup
+
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-// Toggle cart drawer
+
 function toggleCart() {
   document.getElementById("cart-drawer").classList.toggle("open");
+  document.getElementById("cart-overlay").classList.toggle("open");
 }
 
-// Add item to cart
+function closeCart() {
+  document.getElementById("cart-drawer").classList.remove("open");
+  document.getElementById("cart-overlay").classList.remove("open");
+}
+
 function addToCart(name, size, price) {
   cart.push({ name, size, price });
   localStorage.setItem("cart", JSON.stringify(cart));
   renderCart();
-  toggleCart(); // opens drawer when item added
+  toggleCart();
 }
 
-// Render cart items
+
 function renderCart() {
   const cartItems = document.getElementById("cart-items");
   const cartTotal = document.getElementById("cart-total");
-  if (!cartItems) return;
+  if (!cartItems || !cartTotal) return;
 
   cartItems.innerHTML = "";
   let total = 0;
@@ -39,57 +44,36 @@ function renderCart() {
   cartTotal.innerText = "Total: $" + total;
 }
 
-// Display cart on page load
-renderCart();
 
-// 20 placeholder products with random scents and placeholder images
 const productsList = [
-  { name: "Vanilla Bean", prices: { "8oz": 12, "16oz": 18 }, img: "https://via.placeholder.com/150?text=Vanilla+Bean" },
-  { name: "Lavender Calm", prices: { "8oz": 12, "16oz": 18 }, img: "https://via.placeholder.com/150?text=Lavender+Calm" },
-  { name: "Cedarwood Spice", prices: { "8oz": 12, "16oz": 18 }, img: "https://via.placeholder.com/150?text=Cedarwood+Spice" },
-  { name: "Eucalyptus Mint", prices: { "8oz": 12, "16oz": 18 }, img: "https://via.placeholder.com/150?text=Eucalyptus+Mint" },
-  { name: "Rose Garden", prices: { "8oz": 12, "16oz": 18 }, img: "https://via.placeholder.com/150?text=Rose+Garden" },
-  { name: "Citrus Sunshine", prices: { "8oz": 12, "16oz": 18 }, img: "https://via.placeholder.com/150?text=Citrus+Sunshine" },
-  { name: "Ocean Breeze", prices: { "8oz": 12, "16oz": 18 }, img: "https://via.placeholder.com/150?text=Ocean+Breeze" },
-  { name: "Pumpkin Spice", prices: { "8oz": 12, "16oz": 18 }, img: "https://via.placeholder.com/150?text=Pumpkin+Spice" },
-  { name: "Cinnamon Stick", prices: { "8oz": 12, "16oz": 18 }, img: "https://via.placeholder.com/150?text=Cinnamon+Stick" },
-  { name: "Apple Orchard", prices: { "8oz": 12, "16oz": 18 }, img: "https://via.placeholder.com/150?text=Apple+Orchard" },
-  { name: "Honey Lavender", prices: { "8oz": 12, "16oz": 18 }, img: "https://via.placeholder.com/150?text=Honey+Lavender" },
-  { name: "Jasmine Bloom", prices: { "8oz": 12, "16oz": 18 }, img: "https://via.placeholder.com/150?text=Jasmine+Bloom" },
-  { name: "Sandalwood Vanilla", prices: { "8oz": 12, "16oz": 18 }, img: "https://via.placeholder.com/150?text=Sandalwood+Vanilla" },
-  { name: "Fresh Linen", prices: { "8oz": 12, "16oz": 18 }, img: "https://via.placeholder.com/150?text=Fresh+Linen" },
-  { name: "Tropical Paradise", prices: { "8oz": 12, "16oz": 18 }, img: "https://via.placeholder.com/150?text=Tropical+Paradise" },
-  { name: "Peach Nectar", prices: { "8oz": 12, "16oz": 18 }, img: "https://via.placeholder.com/150?text=Peach+Nectar" },
-  { name: "Coconut Breeze", prices: { "8oz": 12, "16oz": 18 }, img: "https://via.placeholder.com/150?text=Coconut+Breeze" },
-  { name: "Berry Bliss", prices: { "8oz": 12, "16oz": 18 }, img: "https://via.placeholder.com/150?text=Berry+Bliss" },
-  { name: "Mint Mojito", prices: { "8oz": 12, "16oz": 18 }, img: "https://via.placeholder.com/150?text=Mint+Mojito" },
-  { name: "Pine Forest", prices: { "8oz": 12, "16oz": 18 }, img: "https://via.placeholder.com/150?text=Pine+Forest" }
+  "Vanilla Bean","Lavender Calm","Cedarwood Spice","Eucalyptus Mint",
+  "Rose Garden","Citrus Sunshine","Ocean Breeze","Pumpkin Spice",
+  "Cinnamon Stick","Apple Orchard","Honey Lavender","Jasmine Bloom",
+  "Fresh Linen","Sandalwood Vanilla","Tropical Paradise","Peach Nectar",
+  "Coconut Breeze","Berry Bliss","Mint Mojito","Pine Forest"
 ];
 
-// Render products dynamically
 function displayProducts() {
   const productsDiv = document.getElementById("products");
   if (!productsDiv) return;
 
   productsDiv.innerHTML = "";
 
-  productsList.forEach(product => {
+  productsList.forEach(name => {
     const productEl = document.createElement("div");
-    productEl.classList.add("product", "fade-in");
+    productEl.className = "product";
 
     productEl.innerHTML = `
-      <img src="${product.img}" alt="${product.name}">
-      <h3>${product.name}</h3>
-      <div class="buttons">
-        <button onclick="addToCart('${product.name}', '8oz', ${product.prices['8oz']})">Add 8oz – $${product.prices['8oz']}</button>
-        <button onclick="addToCart('${product.name}', '16oz', ${product.prices['16oz']})">Add 16oz – $${product.prices['16oz']}</button>
-      </div>
+      <img src="https://via.placeholder.com/300x300?text=${encodeURIComponent(name)}">
+      <h3>${name}</h3>
+      <button onclick="addToCart('${name}','8oz',12)">Add 8oz – $12</button>
+      <button onclick="addToCart('${name}','16oz',18)">Add 16oz – $18</button>
     `;
 
     productsDiv.appendChild(productEl);
   });
 }
 
-// Only run if #products exists
+// ================= INIT =================
+renderCart();
 displayProducts();
-
