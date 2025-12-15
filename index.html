@@ -1,16 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Clara's Candles</title>
+  <meta charset="UTF-8">
+  <title>Clara’s Candles</title>
+
   <link rel="stylesheet" href="style.css">
-  
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-<!-- Header / Navigation -->
 <header>
   <h1>Clara’s Candles</h1>
   <nav>
@@ -21,24 +23,24 @@
   </nav>
 </header>
 
-<!-- Slide-out cart drawer -->
+<div id="cart-overlay" class="cart-overlay" onclick="closeCart()"></div>
+
 <div id="cart-drawer" class="cart-drawer">
+  <button class="cart-close" onclick="closeCart()">✕</button>
   <h3>Your Cart</h3>
   <div id="cart-items"></div>
   <p id="cart-total"></p>
-  <a href="checkout.html" class="button">Checkout</a>
+  <a href="#" class="button">Checkout</a>
 </div>
 
-<!-- Hero Section -->
-<div class="hero">
+<section class="hero">
   <div class="hero-content">
     <h2>Hand-Poured Candles</h2>
     <p>Crafted in small batches to elevate your everyday moments.</p>
-    <a class="button" href="shop.html">Shop Candles</a>
+    <a href="shop.html" class="button">Shop Candles</a>
   </div>
-</div>
+</section>
 
-<!-- Footer -->
 <footer>
   <p>© 2025 Clara’s Candles</p>
   <p>Email: clarascandles@email.com</p>
@@ -48,7 +50,43 @@
   </p>
 </footer>
 
-<!-- Script should be at the end of body -->
-<script src="script.js"></script>
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function toggleCart() {
+  document.getElementById("cart-drawer").classList.toggle("open");
+  document.getElementById("cart-overlay").classList.toggle("open");
+}
+
+function closeCart() {
+  document.getElementById("cart-drawer").classList.remove("open");
+  document.getElementById("cart-overlay").classList.remove("open");
+}
+
+function renderCart() {
+  const items = document.getElementById("cart-items");
+  const totalEl = document.getElementById("cart-total");
+  items.innerHTML = "";
+  let total = 0;
+
+  cart.forEach(item => {
+    items.innerHTML += `
+      <div class="cart-item">
+        <div>
+          <strong>${item.name}</strong><br>
+          <small>${item.size}</small>
+        </div>
+        <span>$${item.price}</span>
+      </div>
+    `;
+    total += item.price;
+  });
+
+  totalEl.innerText = "Total: $" + total;
+}
+
+renderCart();
+</script>
+
 </body>
 </html>
