@@ -227,4 +227,16 @@ nav a:hover {
   color: red;
   margin-left: 10px;
 }
+.remove-btn {
+  background: none;
+  border: none;
+  color: #c0392b;
+  font-size: 12px;
+  cursor: pointer;
+  margin-left: 6px;
+}
+
+.remove-btn:hover {
+  text-decoration: underline;
+}
 
