@@ -4,24 +4,13 @@
   <title>Shop – Clara's Candles</title>
   <link rel="stylesheet" href="style.css">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
-  <footer>
-  <p>© 2025 Clara’s Candles</p>
-  <p>Email: clarascandles@email.com</p>
-  <p>
-    <a href="#">Instagram</a> ·
-    <a href="#">Facebook</a>
-  </p>
-</footer>
-<script src="script.js"></script>
-</body>
-
 <body>
 
+<!-- Header / Navigation -->
 <header>
   <h1>Clara’s Candles</h1>
   <nav>
@@ -40,42 +29,23 @@
   <a href="checkout.html" class="button">Checkout</a>
 </div>
 
-</header>
-
+<!-- Shop Content -->
 <div class="container">
   <h2>Our Candles</h2>
-
-  <div class="product">
-  <h3>Vanilla Bean</h3>
-  <p>Warm and cozy.</p>
-
-  <button onclick="addToCart('Vanilla Bean', '8oz', 12)">Add 8oz – $12</button>
-  <button onclick="addToCart('Vanilla Bean', '16oz', 18)">Add 16oz – $18</button>
+  <div id="products" class="products"></div>
 </div>
 
+<!-- Footer -->
+<footer>
+  <p>© 2025 Clara’s Candles</p>
+  <p>Email: clarascandles@email.com</p>
+  <p>
+    <a href="#">Instagram</a> ·
+    <a href="#">Facebook</a>
+  </p>
+</footer>
 
-    <div class="product">
-      <h3>Lavender Calm</h3>
-      <p>Relaxing floral scent.</p>
-      <strong>$18</strong>
-      <button onclick="addToCart('Lavender Calm', 18)">Add to Cart</button>
-    </div>
-
-    <div class="product">
-      <h3>Cedarwood Spice</h3>
-      <p>Earthy and bold.</p>
-      <strong>$20</strong>
-      <button onclick="addToCart('Cedarwood Spice', 20)">Add to Cart</button>
-    </div>
-  </div>
-
-  <div class="cart">
-    <h3>Your Cart</h3>
-    <div id="cart-items"></div>
-    <strong id="cart-total"></strong>
-  </div>
-</div>
-
+<!-- Script -->
 <script src="script.js"></script>
 </body>
 </html>
