@@ -26,7 +26,10 @@
 <div id="cart-overlay" class="cart-overlay" onclick="closeCart()"></div>
 
 <div id="cart-drawer" class="cart-drawer">
-  <button class="cart-close" onclick="closeCart()">✕</button>
+ <button class="cart-button" onclick="toggleCart()">
+  🛒 <span id="cart-count" class="cart-count">0</span>
+</button>
+
   <h3>Your Cart</h3>
   <div id="cart-items"></div>
   <p id="cart-total"></p>
