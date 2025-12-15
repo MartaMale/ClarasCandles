@@ -19,17 +19,16 @@
     <a href="index.html">Home</a>
     <a href="shop.html">Shop</a>
     <a href="about.html">About</a>
-    <button class="cart-button" onclick="toggleCart()">🛒</button>
+    <button class="cart-button" onclick="toggleCart()">
+      🛒 <span id="cart-count" class="cart-count">0</span>
+    </button>
   </nav>
 </header>
 
 <div id="cart-overlay" class="cart-overlay" onclick="closeCart()"></div>
 
 <div id="cart-drawer" class="cart-drawer">
-  <button class="cart-button" onclick="toggleCart()">
-  🛒 <span id="cart-count" class="cart-count">0</span>
-</button>
-
+  <button class="cart-close" onclick="closeCart()">✕</button>
   <h3>Your Cart</h3>
   <div id="cart-items"></div>
   <p id="cart-total"></p>
@@ -40,72 +39,19 @@
   <h2>Our Story</h2>
   <p>
     Clara’s Candles began as a passion project rooted in creativity, comfort,
-    and the joy of making something by hand.
+    and the joy of making something by hand. Each candle is carefully poured
+    in small batches using quality ingredients.
   </p>
-
   <p>
-    Each candle is carefully hand-poured in small batches using quality
-    ingredients to bring warmth and calm into your home.
-  </p>
-
-  <p>
-    Our mission is simple: create candles that make everyday moments feel
-    intentional, cozy, and beautiful.
+    Our mission is simple: create candles that make your home feel warm,
+    calm, and inviting.
   </p>
 </div>
 
 <footer>
   <p>© 2025 Clara’s Candles</p>
-  <p>Email: clarascandles@email.com</p>
-  <p>
-    <a href="#">Instagram</a> ·
-    <a href="#">Facebook</a>
-  </p>
 </footer>
 
-<script>
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-function toggleCart() {
-  document.getElementById("cart-drawer").classList.toggle("open");
-  document.getElementById("cart-overlay").classList.toggle("open");
-}
-
-function closeCart() {
-  document.getElementById("cart-drawer").classList.remove("open");
-  document.getElementById("cart-overlay").classList.remove("open");
-}
-
-function renderCart() {
-  const items = document.getElementById("cart-items");
-  const totalEl = document.getElementById("cart-total");
-  items.innerHTML = "";
-  let total = 0;
-
-  cart.forEach(item => {
-    items.innerHTML += `
-      <div class="cart-item">
-        <div>
-          <strong>${item.name}</strong><br>
-          <small>${item.size}</small>
-        </div>
-        <span>$${item.price}</span>
-      </div>
-    `;
-    total += item.price;
-  });
-
-  totalEl.innerText = "Total: $" + total;
-}
-
-renderCart();
-</script>
-
-</body>
-</html>
-
-
-<!-- Script -->
 <script src="script.js"></script>
 </body>
 </html>
