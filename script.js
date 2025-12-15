@@ -1,7 +1,5 @@
-// ================= CART STATE =================
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-// ================= CART TOGGLE =================
 function toggleCart() {
   document.getElementById("cart-drawer").classList.toggle("open");
   document.getElementById("cart-overlay").classList.toggle("open");
@@ -12,38 +10,25 @@ function closeCart() {
   document.getElementById("cart-overlay").classList.remove("open");
 }
 
-// ================= ADD TO CART =================
 function addToCart(name, size, price) {
-  const existing = cart.find(item => item.name === name && item.size === size);
-
-  if (existing) {
-    existing.qty += 1;
-  } else {
-    cart.push({ name, size, price, qty: 1 });
-  }
-
+  const existing = cart.find(i => i.name === name && i.size === size);
+  if (existing) existing.qty++;
+  else cart.push({ name, size, price, qty: 1 });
   saveCart();
   toggleCart();
 }
 
-// ================= UPDATE QTY =================
 function updateQty(index, change) {
   cart[index].qty += change;
-
-  if (cart[index].qty <= 0) {
-    cart.splice(index, 1);
-  }
-
+  if (cart[index].qty <= 0) cart.splice(index, 1);
   saveCart();
 }
 
-// ================= REMOVE ITEM =================
 function removeItem(index) {
   cart.splice(index, 1);
   saveCart();
 }
 
-// ================= SAVE + RENDER =================
 function saveCart() {
   localStorage.setItem("cart", JSON.stringify(cart));
   renderCart();
@@ -54,13 +39,13 @@ function renderCart() {
   const totalEl = document.getElementById("cart-total");
   const countEl = document.getElementById("cart-count");
 
-  if (!items || !totalEl) return;
+  if (!items) return;
 
   items.innerHTML = "";
   let total = 0;
   let count = 0;
 
-  cart.forEach((item, index) => {
+  cart.forEach((item, i) => {
     total += item.price * item.qty;
     count += item.qty;
 
@@ -68,13 +53,11 @@ function renderCart() {
       <div class="cart-item">
         <div>
           <strong>${item.name}</strong><br>
-          <small>${item.size}</small>
-          <div class="cart-controls">
-            <button onclick="updateQty(${index}, -1)">−</button>
-            ${item.qty}
-            <button onclick="updateQty(${index}, 1)">+</button>
-            <span class="remove-item" onclick="removeItem(${index})">❌</span>
-          </div>
+          <small>${item.size}</small><br>
+          <button onclick="updateQty(${i},-1)">−</button>
+          ${item.qty}
+          <button onclick="updateQty(${i},1)">+</button>
+          <span onclick="removeItem(${i})">❌</span>
         </div>
         <span>$${item.price * item.qty}</span>
       </div>
@@ -85,8 +68,7 @@ function renderCart() {
   if (countEl) countEl.innerText = count;
 }
 
-// ================= PRODUCTS =================
-const productsList = [
+const scents = [
   "Vanilla Bean","Lavender Calm","Cedarwood Spice","Eucalyptus Mint",
   "Rose Garden","Citrus Sunshine","Ocean Breeze","Pumpkin Spice",
   "Cinnamon Stick","Apple Orchard","Honey Lavender","Jasmine Bloom",
@@ -95,27 +77,20 @@ const productsList = [
 ];
 
 function displayProducts() {
-  const productsDiv = document.getElementById("products");
-  if (!productsDiv) return;
+  const div = document.getElementById("products");
+  if (!div) return;
 
-  productsDiv.innerHTML = "";
-
-  productsList.forEach(name => {
-    const product = document.createElement("div");
-    product.className = "product";
-
-    product.innerHTML = `
-      <img src="https://via.placeholder.com/300x300?text=${encodeURIComponent(name)}">
-      <h3>${name}</h3>
-      <button onclick="addToCart('${name}','8oz',12)">Add 8oz – $12</button>
-      <button onclick="addToCart('${name}','16oz',18)">Add 16oz – $18</button>
+  scents.forEach(name => {
+    div.innerHTML += `
+      <div class="product">
+        <img src="https://via.placeholder.com/300x300?text=${encodeURIComponent(name)}">
+        <h3>${name}</h3>
+        <button onclick="addToCart('${name}','8oz',12)">Add 8oz – $12</button>
+        <button onclick="addToCart('${name}','16oz',18)">Add 16oz – $18</button>
+      </div>
     `;
-
-    productsDiv.appendChild(product);
   });
 }
 
-// ================= INIT =================
 renderCart();
 displayProducts();
-
