@@ -57,7 +57,7 @@ function renderCart() {
           <button onclick="updateQty(${i},-1)">−</button>
           ${item.qty}
           <button onclick="updateQty(${i},1)">+</button>
-          <span onclick="removeItem(${i})">❌</span>
+          <button class="remove-btn" onclick="removeItem(${i})">Remove</button>
         </div>
         <span>$${item.price * item.qty}</span>
       </div>
