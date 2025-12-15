@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Shop – Clara's Candles</title>
+  <title>Shop – Clara’s Candles</title>
 
   <link rel="stylesheet" href="style.css">
 
@@ -19,17 +19,16 @@
     <a href="index.html">Home</a>
     <a href="shop.html">Shop</a>
     <a href="about.html">About</a>
-    <button class="cart-button" onclick="toggleCart()">🛒</button>
+    <button class="cart-button" onclick="toggleCart()">
+      🛒 <span id="cart-count" class="cart-count">0</span>
+    </button>
   </nav>
 </header>
 
 <div id="cart-overlay" class="cart-overlay" onclick="closeCart()"></div>
 
 <div id="cart-drawer" class="cart-drawer">
- <button class="cart-button" onclick="toggleCart()">
-  🛒 <span id="cart-count" class="cart-count">0</span>
-</button>
-
+  <button class="cart-close" onclick="closeCart()">✕</button>
   <h3>Your Cart</h3>
   <div id="cart-items"></div>
   <p id="cart-total"></p>
@@ -38,91 +37,13 @@
 
 <div class="container">
   <h2>Our Candles</h2>
-  <div id="products" class="products"></div>
+  <div id="products" class="product-grid"></div>
 </div>
 
 <footer>
   <p>© 2025 Clara’s Candles</p>
-  <p>Email: clarascandles@email.com</p>
-  <p>
-    <a href="#">Instagram</a> ·
-    <a href="#">Facebook</a>
-  </p>
 </footer>
 
-<script>
-
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-function toggleCart() {
-  document.getElementById("cart-drawer").classList.toggle("open");
-  document.getElementById("cart-overlay").classList.toggle("open");
-}
-
-function closeCart() {
-  document.getElementById("cart-drawer").classList.remove("open");
-  document.getElementById("cart-overlay").classList.remove("open");
-}
-
-function addToCart(name, size, price) {
-  cart.push({ name, size, price });
-  localStorage.setItem("cart", JSON.stringify(cart));
-  renderCart();
-  toggleCart();
-}
-
-function renderCart() {
-  const items = document.getElementById("cart-items");
-  const totalEl = document.getElementById("cart-total");
-  items.innerHTML = "";
-  let total = 0;
-
-  cart.forEach(item => {
-    items.innerHTML += `
-      <div class="cart-item">
-        <div>
-          <strong>${item.name}</strong><br>
-          <small>${item.size}</small>
-        </div>
-        <span>$${item.price}</span>
-      </div>
-    `;
-    total += item.price;
-  });
-
-  totalEl.innerText = "Total: $" + total;
-}
-
-renderCart();
-
-const productsList = [
-  "Vanilla Bean","Lavender Calm","Cedarwood Spice","Eucalyptus Mint",
-  "Rose Garden","Citrus Sunshine","Ocean Breeze","Pumpkin Spice",
-  "Cinnamon Stick","Apple Orchard","Honey Lavender","Jasmine Bloom",
-  "Fresh Linen","Sandalwood Vanilla","Tropical Paradise","Peach Nectar",
-  "Coconut Breeze","Berry Bliss","Mint Mojito","Pine Forest"
-];
-
-function displayProducts() {
-  const productsDiv = document.getElementById("products");
-
-  productsList.forEach(name => {
-    const product = document.createElement("div");
-    product.className = "product";
-
-    product.innerHTML = `
-      <img src="https://via.placeholder.com/300x300?text=${encodeURIComponent(name)}" alt="${name}">
-      <h3>${name}</h3>
-      <button onclick="addToCart('${name}','8oz',12)">Add 8oz – $12</button>
-      <button onclick="addToCart('${name}','16oz',18)">Add 16oz – $18</button>
-    `;
-
-    productsDiv.appendChild(product);
-  });
-}
-
-displayProducts();
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
