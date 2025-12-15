@@ -19,10 +19,9 @@
     <a href="index.html">Home</a>
     <a href="shop.html">Shop</a>
     <a href="about.html">About</a>
-   <button class="cart-button" onclick="toggleCart()">
-  🛒 <span id="cart-count" class="cart-count">0</span>
-</button>
-
+    <button class="cart-button" onclick="toggleCart()">
+      🛒 <span id="cart-count" class="cart-count">0</span>
+    </button>
   </nav>
 </header>
 
@@ -48,48 +47,10 @@
   <p>© 2025 Clara’s Candles</p>
   <p>Email: clarascandles@email.com</p>
   <p>
-    <a href="#">Instagram</a> ·
-    <a href="#">Facebook</a>
+    <a href="#">Instagram</a> · <a href="#">Facebook</a>
   </p>
 </footer>
 
-<script>
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-function toggleCart() {
-  document.getElementById("cart-drawer").classList.toggle("open");
-  document.getElementById("cart-overlay").classList.toggle("open");
-}
-
-function closeCart() {
-  document.getElementById("cart-drawer").classList.remove("open");
-  document.getElementById("cart-overlay").classList.remove("open");
-}
-
-function renderCart() {
-  const items = document.getElementById("cart-items");
-  const totalEl = document.getElementById("cart-total");
-  items.innerHTML = "";
-  let total = 0;
-
-  cart.forEach(item => {
-    items.innerHTML += `
-      <div class="cart-item">
-        <div>
-          <strong>${item.name}</strong><br>
-          <small>${item.size}</small>
-        </div>
-        <span>$${item.price}</span>
-      </div>
-    `;
-    total += item.price;
-  });
-
-  totalEl.innerText = "Total: $" + total;
-}
-
-renderCart();
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
