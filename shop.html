@@ -1,14 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Shop – Clara’s Candles</title>
-
-  <link rel="stylesheet" href="style.css">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<title>Shop – Clara’s Candles</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -19,31 +15,47 @@
     <a href="index.html">Home</a>
     <a href="shop.html">Shop</a>
     <a href="about.html">About</a>
-    <button class="cart-button" onclick="toggleCart()">
-      🛒 <span id="cart-count" class="cart-count">0</span>
-    </button>
+    <button class="cart-button" onclick="toggleCart()">🛒 <span id="cart-count" class="cart-count">0</span></button>
   </nav>
 </header>
 
 <div id="cart-overlay" class="cart-overlay" onclick="closeCart()"></div>
-
 <div id="cart-drawer" class="cart-drawer">
   <button class="cart-close" onclick="closeCart()">✕</button>
   <h3>Your Cart</h3>
   <div id="cart-items"></div>
   <p id="cart-total"></p>
-  <a href="#" class="button">Checkout</a>
 </div>
 
-<div class="container">
+<section class="container">
   <h2>Our Candles</h2>
-  <div id="products" class="product-grid"></div>
-</div>
-
-<footer>
-  <p>© 2025 Clara’s Candles</p>
-</footer>
+  <div class="products" id="products"></div>
+</section>
 
 <script src="script.js"></script>
+
+<script>
+const scents = [
+  "Vanilla Bean","Lavender Calm","Cedarwood Spice","Eucalyptus Mint",
+  "Rose Garden","Citrus Sunshine","Ocean Breeze","Pumpkin Spice",
+  "Cinnamon Stick","Apple Orchard","Honey Lavender","Jasmine Bloom",
+  "Sandalwood Vanilla","Fresh Linen","Tropical Paradise","Peach Nectar",
+  "Coconut Breeze","Berry Bliss","Mint Mojito","Pine Forest"
+];
+
+const products = document.getElementById("products");
+
+scents.forEach(scent => {
+  products.innerHTML += `
+    <div class="product">
+      <img src="https://via.placeholder.com/300?text=${encodeURIComponent(scent)}">
+      <h3>${scent}</h3>
+      <button onclick="addToCart('${scent}','8oz',12)">8oz – $12</button>
+      <button onclick="addToCart('${scent}','16oz',18)">16oz – $18</button>
+    </div>
+  `;
+});
+</script>
+
 </body>
 </html>
