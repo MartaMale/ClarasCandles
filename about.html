@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>About – Clara’s Candles</title>
+  <title>About Us | Clara’s Candles</title>
 
   <link rel="stylesheet" href="style.css">
 
@@ -18,7 +18,7 @@
   <nav>
     <a href="index.html">Home</a>
     <a href="shop.html">Shop</a>
-    <a href="about.html">About</a>
+    <a href="about.html" class="active">About</a>
     <button class="cart-button" onclick="toggleCart()">
       🛒 <span id="cart-count" class="cart-count">0</span>
     </button>
@@ -35,23 +35,99 @@
   <a href="#" class="button">Checkout</a>
 </div>
 
-<div class="container">
-  <h2>Our Story</h2>
-  <p>
-    Clara’s Candles began as a passion project rooted in creativity, comfort,
-    and the joy of making something by hand. Each candle is carefully poured
-    in small batches using quality ingredients.
-  </p>
-  <p>
-    Our mission is simple: create candles that make your home feel warm,
-    calm, and inviting.
-  </p>
-</div>
+<main class="about-page">
+  <section class="about-container">
+    <h2>About Us</h2>
+
+    <p>
+      Clara’s Candles was born from a lifetime of service, family, and a love for doing things the right way.
+    </p>
+
+    <p>
+      We’re Marta and Lawrence, and between the two of us we spent nearly 60 years as educators, dedicated to teaching, guiding, and supporting others. Alongside that journey, Lawrence proudly served our country as a U.S. Army veteran and paratrooper, including service in Iraq. Those experiences shaped the values we carry into everything we do—integrity, care, and a deep appreciation for home and community.
+    </p>
+
+    <p>
+      Our story began through military service, where we met and started our life together. Marta is originally from the beautiful country of Panama, and our shared journey eventually led us to Spring Arbor, Michigan, where we raised our family and put down roots. Along the way, we welcomed two children who continue to inspire us every day.
+    </p>
+
+    <p>
+      Candles have always been close to our hearts. For as long as our family can remember, candle shops were a favorite stop—spending hours sampling scents and enjoying the simple comfort they bring. Over time, though, we learned that many of the candles we loved were made with ingredients we didn’t feel good about burning in our home.
+    </p>
+
+    <p>
+      So we decided to make our own.
+    </p>
+
+    <p>
+      Every candle from Clara’s Candles is hand-poured in our home using 100% pure soy wax, essential oils, and lead- and zinc-free cotton wicks. We never use dyes, paraffins, or toxic additives. Our candles are clean, natural, and thoughtfully made—exactly the kind we want in our own home and yours.
+    </p>
+
+    <p>
+      What began as a small passion project quickly grew through word of mouth, local fundraisers, and craft shows. Creating candles together from start to finish has become something we truly enjoy—a meaningful way to work side by side and share something special with our community.
+    </p>
+
+    <p>
+      The name Clara’s Candles holds a special place in our hearts, as it’s named after our daughter. This business is rooted in family, love, and the desire to create something safe, warm, and lasting.
+    </p>
+
+    <p>
+      We are proud to be a Latina- and veteran-owned small business, and we’re grateful for every person who supports our journey. Our hope is that each candle brings comfort, peace, and a sense of home into your space.
+    </p>
+
+    <p class="signature">
+      With gratitude,<br>
+      <strong>Marta &amp; Lawrence</strong>
+    </p>
+  </section>
+</main>
 
 <footer>
   <p>© 2025 Clara’s Candles</p>
+  <p>Email: clarascandles@email.com</p>
+  <p>
+    <a href="#">Instagram</a> ·
+    <a href="#">Facebook</a>
+  </p>
 </footer>
 
-<script src="script.js"></script>
+<script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function toggleCart() {
+  document.getElementById("cart-drawer").classList.toggle("open");
+  document.getElementById("cart-overlay").classList.toggle("open");
+}
+
+function closeCart() {
+  document.getElementById("cart-drawer").classList.remove("open");
+  document.getElementById("cart-overlay").classList.remove("open");
+}
+
+function renderCart() {
+  const items = document.getElementById("cart-items");
+  const totalEl = document.getElementById("cart-total");
+  items.innerHTML = "";
+  let total = 0;
+
+  cart.forEach(item => {
+    items.innerHTML += `
+      <div class="cart-item">
+        <div>
+          <strong>${item.name}</strong><br>
+          <small>${item.size} × ${item.qty}</small>
+        </div>
+        <span>$${item.price * item.qty}</span>
+      </div>
+    `;
+    total += item.price * item.qty;
+  });
+
+  totalEl.innerText = "Total: $" + total;
+}
+
+renderCart();
+</script>
+
 </body>
 </html>
