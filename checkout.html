@@ -22,21 +22,24 @@
 <section class="container">
   <h2>Checkout</h2>
 
-  <h3>Order Summary</h3>
-  <div id="order-summary"></div>
+  <div class="product">
+    <h3>Order Summary</h3>
+    <div id="order-summary"></div>
+  </div>
 
-  <h3>Delivery Method</h3>
-  <label><input type="radio" name="delivery" checked> Local Pickup</label><br>
-  <label><input type="radio" name="delivery"> Shipping</label>
+  <div class="product">
+    <h3>Delivery</h3>
+    <label><input type="radio" checked> Local Pickup</label><br>
+    <label><input type="radio"> Shipping</label>
+  </div>
 
-  <h3 style="margin-top:20px;">Gift Options</h3>
-  <label>
-    <input type="checkbox" id="giftCheck"> This is a gift
-  </label>
+  <div class="product">
+    <h3>Gift Options</h3>
+    <label><input type="checkbox" id="gift"> This is a gift</label>
+    <textarea id="gift-note" placeholder="Gift note" style="display:none;margin-top:10px;"></textarea>
+  </div>
 
-  <textarea id="giftMessage" placeholder="Gift message (optional)" style="display:none;"></textarea>
-
-  <button class="button" style="margin-top:30px;">Place Order</button>
+  <a href="#" class="button">Place Order</a>
 </section>
 
 <footer>
@@ -55,8 +58,8 @@ cart.forEach(item => {
 
 summary.innerHTML += `<strong>Total: $${total}</strong>`;
 
-document.getElementById("giftCheck").addEventListener("change", e => {
-  document.getElementById("giftMessage").style.display = e.target.checked ? "block" : "none";
+document.getElementById("gift").addEventListener("change", e => {
+  document.getElementById("gift-note").style.display = e.target.checked ? "block" : "none";
 });
 </script>
 
