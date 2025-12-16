@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Checkout – Clara’s Candles</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<header>
+  <h1>Clara’s Candles</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<section class="container">
+  <h2>Checkout</h2>
+
+  <h3>Order Summary</h3>
+  <div id="order-summary"></div>
+
+  <h3>Delivery Method</h3>
+  <label><input type="radio" name="delivery" checked> Local Pickup</label><br>
+  <label><input type="radio" name="delivery"> Shipping</label>
+
+  <h3 style="margin-top:20px;">Gift Options</h3>
+  <label>
+    <input type="checkbox" id="giftCheck"> This is a gift
+  </label>
+
+  <textarea id="giftMessage" placeholder="Gift message (optional)" style="display:none;"></textarea>
+
+  <button class="button" style="margin-top:30px;">Place Order</button>
+</section>
+
+<footer>
+  <p>© 2025 Clara’s Candles</p>
+</footer>
+
+<script>
+const cart = JSON.parse(localStorage.getItem("cart")) || [];
+const summary = document.getElementById("order-summary");
+
+let total = 0;
+cart.forEach(item => {
+  summary.innerHTML += `<p>${item.qty} × ${item.name} (${item.size})</p>`;
+  total += item.qty * item.price;
+});
+
+summary.innerHTML += `<strong>Total: $${total}</strong>`;
+
+document.getElementById("giftCheck").addEventListener("change", e => {
+  document.getElementById("giftMessage").style.display = e.target.checked ? "block" : "none";
+});
+</script>
+
+</body>
+</html>
