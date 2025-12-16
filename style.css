@@ -68,7 +68,7 @@ nav a {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(to bottom, rgba(0,0,0,.2), rgba(0,0,0,.5)),
+  background: linear-gradient(to bottom, rgba(0,0,0,.3), rgba(0,0,0,.6)),
     url("https://images.unsplash.com/photo-1602526216038-9d1d9c68c8a6") center/cover;
   color: white;
   text-align: center;
@@ -79,10 +79,6 @@ nav a {
   font-size: 48px;
 }
 
-.hero p {
-  margin: 15px 0;
-}
-
 .button {
   background: var(--accent);
   color: white;
@@ -90,14 +86,26 @@ nav a {
   text-decoration: none;
   border-radius: 30px;
   display: inline-block;
-  margin-top: 10px;
+  margin-top: 15px;
+  border: none;
+  cursor: pointer;
 }
 
-/* SHOP */
+/* CONTAINER */
 .container {
   padding: 60px 30px;
   max-width: 1200px;
   margin: auto;
+}
+
+/* SHOP */
+.filter-bar {
+  margin-bottom: 30px;
+}
+
+select {
+  padding: 10px;
+  font-size: 16px;
 }
 
 .products {
@@ -112,16 +120,16 @@ nav a {
   padding: 20px;
   text-align: center;
   box-shadow: 0 10px 25px rgba(0,0,0,.05);
-  animation: fadeIn .6s ease;
 }
 
 .product img {
   width: 100%;
   border-radius: 10px;
+  margin-bottom: 10px;
 }
 
 .product button {
-  margin: 8px;
+  margin: 5px;
   padding: 10px 15px;
   border: none;
   background: var(--primary);
@@ -180,6 +188,21 @@ nav a {
   cursor: pointer;
 }
 
+/* FORMS */
+form {
+  max-width: 600px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+textarea {
+  min-height: 120px;
+}
+
 /* FOOTER */
 footer {
   background: var(--dark);
@@ -193,14 +216,7 @@ footer a {
   text-decoration: none;
 }
 
-/* ANIMATIONS */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
 /* MOBILE */
 @media(max-width:768px){
-  nav a { margin-right: 10px; }
   .hero h2 { font-size: 36px; }
 }
