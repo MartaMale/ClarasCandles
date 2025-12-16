@@ -13,7 +13,7 @@ header {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: #fff;
+  background: #ffffff;
   border-bottom: 1px solid #eee;
   padding: 20px 50px;
   display: flex;
@@ -24,38 +24,46 @@ header {
 header h1 {
   font-family: 'Playfair Display', serif;
   margin: 0;
+  font-size: 24px;
 }
 
 nav {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 22px;
 }
 
-nav a {
+nav a,
+.cart-button {
   text-decoration: none;
   color: #2c2c2c;
   font-weight: 500;
+  font-size: 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .shop-dropdown {
   position: relative;
+  padding-bottom: 10px;
 }
 
 .shop-dropdown-content {
   display: none;
   position: absolute;
-  top: 28px;
+  top: 100%;
+  left: 0;
   background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.1);
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.12);
   padding: 10px 0;
-  min-width: 180px;
+  min-width: 200px;
 }
 
 .shop-dropdown-content a {
   display: block;
-  padding: 10px 20px;
+  padding: 12px 20px;
   white-space: nowrap;
 }
 
@@ -63,27 +71,21 @@ nav a {
   display: block;
 }
 
-.cart-button {
-  background: none;
-  border: none;
-  font-weight: 600;
-  cursor: pointer;
-}
-
 .hero {
-  background: url("https://images.unsplash.com/photo-1603006905393-2c0a9faac1bb")
-    center/cover no-repeat;
   position: relative;
+  background-image: url("https://images.unsplash.com/photo-1603006905393-2c0a9faac1bb");
+  background-size: cover;
+  background-position: center;
   padding: 140px 20px;
   text-align: center;
-  color: #fff;
+  color: white;
 }
 
 .hero::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,.45);
+  background: rgba(0,0,0,0.45);
 }
 
 .hero-content {
@@ -107,49 +109,13 @@ nav a {
   border-radius: 30px;
   text-decoration: none;
   display: inline-block;
-  margin-top: 15px;
-}
-
-.container {
-  max-width: 1100px;
-  margin: 60px auto;
-  padding: 0 20px;
-}
-
-.products {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 30px;
-}
-
-.product {
-  background: #fff;
-  padding: 20px;
-  border-radius: 20px;
-  text-align: center;
-  box-shadow: 0 10px 30px rgba(0,0,0,.05);
-}
-
-.product img {
-  width: 100%;
-  border-radius: 14px;
-  margin-bottom: 10px;
-}
-
-.product button {
-  background: #2c2c2c;
-  color: #fff;
-  border: none;
-  border-radius: 20px;
-  padding: 8px 14px;
-  margin: 5px;
-  cursor: pointer;
+  margin-top: 20px;
 }
 
 .cart-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.4);
+  background: rgba(0,0,0,0.4);
   display: none;
   z-index: 999;
 }
@@ -166,8 +132,8 @@ nav a {
   height: 100%;
   background: #fff;
   padding: 30px;
-  box-shadow: -10px 0 30px rgba(0,0,0,.15);
-  transition: right .3s ease;
+  box-shadow: -10px 0 30px rgba(0,0,0,0.15);
+  transition: right 0.3s ease;
   z-index: 1000;
 }
 
@@ -178,15 +144,22 @@ nav a {
 .cart-close {
   background: none;
   border: none;
-  font-size: 22px;
-  float: right;
+  font-size: 20px;
   cursor: pointer;
+  float: right;
 }
 
 .cart-item {
   display: flex;
   justify-content: space-between;
   margin: 15px 0;
+  font-size: 14px;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 60px auto;
+  padding: 0 20px;
 }
 
 .contact-form {
@@ -207,7 +180,7 @@ nav a {
 }
 
 footer {
-  background: #fff;
+  background: #ffffff;
   text-align: center;
   padding: 30px;
   border-top: 1px solid #eee;
