@@ -1,48 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Contact – Clara’s Candles</title>
-<link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Contact - Claras Candles</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
 <header>
-  <h1>Clara’s Candles</h1>
+  <h1>Claras Candles</h1>
   <nav>
     <a href="index.html">Home</a>
     <a href="shop.html">Shop</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
-    <button class="cart-button" onclick="toggleCart()">🛒 <span id="cart-count" class="cart-count">0</span></button>
+    <button class="cart-button" onclick="toggleCart()">Cart</button>
   </nav>
 </header>
 
-<section class="container">
-  <h2>Contact</h2>
+<div id="cart-overlay" class="cart-overlay" onclick="closeCart()"></div>
 
-  <form>
-    <input type="text" placeholder="First Name *" required>
-    <input type="text" placeholder="Last Name">
-    <input type="email" placeholder="Email *" required>
-    <textarea placeholder="Message *" required></textarea>
+<div id="cart-drawer" class="cart-drawer">
+  <button class="cart-close" onclick="closeCart()">✕</button>
+  <h3>Your Cart</h3>
+  <div id="cart-items"></div>
+  <p id="cart-total"></p>
+  <a href="checkout.html" class="button">Checkout</a>
+</div>
+
+<div class="container">
+  <h2>Contact Us</h2>
+
+  <form class="contact-form">
+    <label>First Name *</label>
+    <input type="text" required>
+
+    <label>Last Name</label>
+    <input type="text">
+
+    <label>Email *</label>
+    <input type="email" required>
+
+    <label>Message *</label>
+    <textarea rows="5" required></textarea>
+
     <button class="button" type="submit">Submit</button>
   </form>
 
   <div style="margin-top:40px;">
     <p><strong>Email:</strong> clarascandles@email.com</p>
     <p><strong>Phone:</strong> (555) 123-4567</p>
-    <p>
-      Interested in fundraising opportunities?<br>
-      Reach out to us — we’d love to work with your organization.
-    </p>
+    <p>Reach out to us about fundraisers or community events.</p>
   </div>
-</section>
+</div>
 
 <footer>
-  <p>© 2025 Clara’s Candles</p>
+  <p>© 2025 Claras Candles</p>
 </footer>
 
 <script src="script.js"></script>
