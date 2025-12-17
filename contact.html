@@ -12,14 +12,28 @@
 
 <header>
   <h1>Claras Candles</h1>
-  <nav>
+
+  <nav class="nav">
     <a href="index.html">Home</a>
-    <a href="shop.html">Shop</a>
+
+    <div class="shop-menu">
+      <a href="shop.html">Shop</a>
+      <div class="dropdown">
+        <a href="shop.html#all">All Candles</a>
+        <a href="shop.html#fall">Fall Collection</a>
+        <a href="shop.html#holiday">Holiday Collection</a>
+        <a href="shop.html#summer">Summer Collection</a>
+        <a href="shop.html#best">Best Sellers</a>
+      </div>
+    </div>
+
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
-    <button class="cart-button" onclick="toggleCart()">Cart</button>
+
+    <button onclick="toggleCart()">Cart (<span id="cart-count">0</span>)</button>
   </nav>
 </header>
+
 
 <div id="cart-overlay" class="cart-overlay" onclick="closeCart()"></div>
 
