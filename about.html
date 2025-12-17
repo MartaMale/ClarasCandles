@@ -4,43 +4,128 @@
   <meta charset="UTF-8">
   <title>About – Clara’s Candles</title>
   <link rel="stylesheet" href="style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ABOUT PAGE ONLY */
+    .about-container {
+      max-width: 800px;
+      margin: 60px auto;
+      padding: 0 24px;
+      line-height: 1.7;
+    }
+
+    .about-container h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .about-container p {
+      margin-bottom: 18px;
+      font-size: 16px;
+    }
+
+    .about-signature {
+      margin-top: 40px;
+      font-weight: 500;
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-  <h1>Claras Candles</h1>
+<header class="site-header">
+  <div class="header-inner">
+    <h1 class="logo">Clara’s Candles</h1>
 
-  <nav class="nav">
-    <a href="index.html">Home</a>
-
-    <div class="shop-menu">
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
       <a href="shop.html">Shop</a>
-      <div class="dropdown">
-        <a href="shop.html#all">All Candles</a>
-        <a href="shop.html#fall">Fall Collection</a>
-        <a href="shop.html#holiday">Holiday Collection</a>
-        <a href="shop.html#summer">Summer Collection</a>
-        <a href="shop.html#best">Best Sellers</a>
-      </div>
-    </div>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
 
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-
-    <button onclick="toggleCart()">Cart (<span id="cart-count">0</span>)</button>
-  </nav>
+      <button class="cart-button" onclick="toggleCart()">
+        Cart (<span id="cart-count">0</span>)
+      </button>
+    </nav>
+  </div>
 </header>
 
-<main class="container">
-  <h2>About Us</h2>
-  <p>Clara’s Candles was born from a lifetime of service, family, and a love for doing things the right way...</p>
-  <p><strong>With gratitude,<br>Marta & Lawrence</strong></p>
+<main class="about-container">
+  <h2>About Clara’s Candles</h2>
+
+  <p><strong>Clara’s Candles was born from a lifetime of service, family, and a love for doing things the right way.</strong></p>
+
+  <p>
+    We’re Marta and Lawrence, and between the two of us we spent nearly 60 years as educators, dedicated to teaching,
+    guiding, and supporting others. Alongside that journey, Lawrence proudly served our country as a U.S. Army
+    veteran and paratrooper, including service in Iraq. Those experiences shaped the values we carry into everything
+    we do — integrity, care, and a deep appreciation for home and community.
+  </p>
+
+  <p>
+    Our story began through military service, where we met and started our life together. Marta is originally from
+    the beautiful country of Panama, and our shared journey eventually led us to Spring Arbor, Michigan, where we
+    raised our family and put down roots. Along the way, we welcomed two children who continue to inspire us every day.
+  </p>
+
+  <p>
+    Candles have always been close to our hearts. For as long as our family can remember, candle shops were a favorite
+    stop — spending hours sampling scents and enjoying the simple comfort they bring. Over time, though, we learned
+    that many of the candles we loved were made with ingredients we didn’t feel good about burning in our home.
+  </p>
+
+  <p><strong>So we decided to make our own.</strong></p>
+
+  <p>
+    Every candle from Clara’s Candles is hand-poured in our home using 100% pure soy wax, essential oils, and
+    lead- and zinc-free cotton wicks. We never use dyes, paraffins, or toxic additives. Our candles are clean,
+    natural, and thoughtfully made — exactly the kind we want in our own home and yours.
+  </p>
+
+  <p>
+    What began as a small passion project quickly grew through word of mouth, local fundraisers, and craft shows.
+    Creating candles together from start to finish has become something we truly enjoy — a meaningful way to work
+    side by side and share something special with our community.
+  </p>
+
+  <p>
+    The name Clara’s Candles holds a special place in our hearts, as it’s named after our daughter. This business is
+    rooted in family, love, and the desire to create something safe, warm, and lasting.
+  </p>
+
+  <p>
+    We are proud to be a Latina- and veteran-owned small business, and we’re grateful for every person who supports
+    our journey. Our hope is that each candle brings comfort, peace, and a sense of home into your space.
+  </p>
+
+  <p class="about-signature">
+    With gratitude,<br>
+    Marta & Lawrence
+  </p>
 </main>
 
-<footer>
+<footer class="site-footer">
   <p>© 2025 Clara’s Candles</p>
+  <p>Email: clarascandles@email.com</p>
 </footer>
+
+<!-- CART -->
+<div id="cart-overlay" onclick="closeCart()"></div>
+
+<div id="cart-drawer">
+  <div class="cart-header">
+    <h3>Your Cart</h3>
+    <button class="cart-close-btn" onclick="closeCart()">✕</button>
+  </div>
+  <div id="cart-items"></div>
+  <p id="cart-total"></p>
+</div>
 
 <script src="script.js"></script>
 </body>
