@@ -4,10 +4,6 @@
   <meta charset="UTF-8">
   <title>Clara’s Candles</title>
   <link rel="stylesheet" href="style.css">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -15,15 +11,13 @@
 <header class="site-header">
   <div class="header-inner">
     <h1 class="logo">Clara’s Candles</h1>
-
     <nav class="nav-links">
       <a href="index.html">Home</a>
       <a href="shop.html">Shop</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
-
       <button class="cart-button" onclick="toggleCart()">
-        Cart <span id="cart-count">0</span>
+        Cart (<span id="cart-count">0</span>)
       </button>
     </nav>
   </div>
@@ -31,25 +25,19 @@
 
 <section class="hero">
   <div class="hero-content">
-    <h2>Clean-Burning Hand-Poured Candles</h2>
-    <p>Thoughtfully made with natural soy wax to bring warmth into your home.</p>
+    <h2>Hand-Poured Candles</h2>
+    <p>Clean, cozy candles made for your home.</p>
     <a href="shop.html" class="button">Shop Candles</a>
   </div>
 </section>
 
 <footer class="site-footer">
   <p>© 2025 Clara’s Candles</p>
-  <p>Email: clarascandles@email.com</p>
 </footer>
 
-<!-- CART -->
 <div id="cart-overlay" onclick="closeCart()"></div>
-
 <div id="cart-drawer">
-  <div class="cart-header">
-    <h3>Your Cart</h3>
-    <button class="cart-close-btn" onclick="closeCart()">✕</button>
-  </div>
+  <h3>Your Cart</h3>
   <div id="cart-items"></div>
   <p id="cart-total"></p>
 </div>
