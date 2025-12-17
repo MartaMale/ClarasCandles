@@ -136,3 +136,34 @@ footer {
   background: #ffffff;
   border-top: 1px solid #e5e5e5;
 }
+/* SHOP DROPDOWN */
+.shop-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.shop-menu:hover .dropdown {
+  display: block;
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 28px;
+  left: 0;
+  background: white;
+  border: 1px solid #ddd;
+  min-width: 200px;
+  z-index: 100;
+}
+
+.dropdown a {
+  display: block;
+  padding: 10px 15px;
+  color: #2e2e2e;
+  text-decoration: none;
+}
+
+.dropdown a:hover {
+  background: #f4f4f4;
+}
