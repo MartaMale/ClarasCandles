@@ -1,6 +1,5 @@
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-/* ---------- CART OPEN / CLOSE ---------- */
 function openCart() {
   document.getElementById("cart-drawer").classList.add("open");
   document.getElementById("cart-overlay").classList.add("open");
@@ -17,7 +16,6 @@ function toggleCart() {
   drawer.classList.contains("open") ? closeCart() : openCart();
 }
 
-/* ---------- ADD TO CART ---------- */
 function addToCart(name, size, price) {
   const item = cart.find(i => i.name === name && i.size === size);
 
@@ -31,7 +29,6 @@ function addToCart(name, size, price) {
   openCart();
 }
 
-/* ---------- UPDATE QTY ---------- */
 function updateQty(index, delta) {
   cart[index].qty += delta;
   if (cart[index].qty <= 0) {
@@ -40,7 +37,6 @@ function updateQty(index, delta) {
   saveCart();
 }
 
-/* ---------- SAVE & RENDER ---------- */
 function saveCart() {
   localStorage.setItem("cart", JSON.stringify(cart));
   renderCart();
