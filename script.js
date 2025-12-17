@@ -1,71 +1,116 @@
+/* ----------------------------
+   CART LOGIC (unchanged)
+---------------------------- */
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-const products = [
-  { name:"Vanilla Buttercream", collection:"bestsellers" },
-  { name:"Cinnamon Stick", collection:"fall" },
-  { name:"Pumpkin Spice", collection:"fall" },
-  { name:"Mistletoe", collection:"holiday" },
-  { name:"Peppermint", collection:"holiday" },
-  { name:"Coconut Lime Verbena", collection:"summer" },
-  { name:"Lavender", collection:"all" },
-];
-
-function toggleCart(){
+function toggleCart() {
   document.getElementById("cart-drawer").classList.toggle("open");
+  document.getElementById("cart-overlay").classList.toggle("open");
+  renderCart();
 }
 
-function closeCart(){
+function closeCart() {
   document.getElementById("cart-drawer").classList.remove("open");
+  document.getElementById("cart-overlay").classList.remove("open");
 }
 
-function addToCart(name){
-  cart.push({name, qty:1, price:18});
+function addToCart(name, size, price) {
+  const existing = cart.find(i => i.name === name && i.size === size);
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({ name, size, price, qty: 1 });
+  }
   saveCart();
 }
 
-function saveCart(){
+function saveCart() {
   localStorage.setItem("cart", JSON.stringify(cart));
   renderCart();
 }
 
-function renderCart(){
+function renderCart() {
   const items = document.getElementById("cart-items");
-  const total = document.getElementById("cart-total");
-  if(!items) return;
+  const totalEl = document.getElementById("cart-total");
+  const countEl = document.getElementById("cart-count");
+  if (!items) return;
 
   items.innerHTML = "";
-  let sum = 0;
+  let total = 0;
+  let count = 0;
 
-  cart.forEach((item,i)=>{
+  cart.forEach(item => {
+    total += item.price * item.qty;
+    count += item.qty;
+
     items.innerHTML += `
-      <p>${item.name} (${item.qty})</p>
+      <p>${item.name} (${item.size}) × ${item.qty}</p>
     `;
-    sum += item.price * item.qty;
   });
 
-  total.innerText = "Total: $" + sum;
-  document.querySelectorAll("#cart-count").forEach(el=>el.innerText = cart.length);
+  totalEl.textContent = "Total: $" + total;
+  if (countEl) countEl.textContent = count;
 }
 
-function loadProducts(){
-  const grid = document.getElementById("products");
-  if(!grid) return;
+/* ----------------------------
+   SHOP PRODUCTS + COLLECTIONS
+---------------------------- */
+
+const products = [
+  { name: "Vanilla Buttercream", collection: "bestsellers" },
+  { name: "Cinnamon Stick", collection: "fall" },
+  { name: "Lavender", collection: "all" },
+  { name: "Pumpkin Spice", collection: "fall" },
+  { name: "Hansel and Gretel", collection: "holiday" },
+  { name: "Honeysuckle Jasmine", collection: "summer" },
+  { name: "Jamaican Me Crazy", collection: "summer" },
+  { name: "Love Spell", collection: "bestsellers" },
+  { name: "Coconut Lime Verbena", collection: "summer" },
+  { name: "Plumeria", collection: "summer" },
+  { name: "Caramel Popcorn", collection: "fall" },
+  { name: "Spice Mulberry", collection: "fall" },
+  { name: "Mistletoe", collection: "holiday" },
+  { name: "Honeydew Melon", collection: "summer" },
+  { name: "Peppermint", collection: "holiday" },
+  { name: "Apple Harvest", collection: "fall" },
+  { name: "Day At The Spa", collection: "bestsellers" }
+];
+
+function loadShop() {
+  const grid = document.getElementById("product-grid");
+  if (!grid) return;
 
   const params = new URLSearchParams(window.location.search);
-  const filter = params.get("collection");
+  const filter = params.get("collection") || "all";
+
+  const titleMap = {
+    all: "All Candles",
+    fall: "Fall Collection",
+    holiday: "Holiday Collection",
+    summer: "Summer Collection",
+    bestsellers: "Best Sellers"
+  };
+
+  document.getElementById("collection-title").textContent =
+    titleMap[filter] || "All Candles";
+
+  grid.innerHTML = "";
 
   products
-    .filter(p=> !filter || filter==="all" || p.collection===filter)
-    .forEach(p=>{
+    .filter(p => filter === "all" || p.collection === filter)
+    .forEach(p => {
       grid.innerHTML += `
-        <div class="product">
-          <img src="https://via.placeholder.com/250">
+        <div class="product-card">
+          <img src="https://via.placeholder.com/400x400?text=${encodeURIComponent(p.name)}">
           <h3>${p.name}</h3>
-          <button onclick="addToCart('${p.name}')">Add to Cart</button>
+          <button onclick="addToCart('${p.name}','8oz',12)">8oz – $12</button>
+          <button onclick="addToCart('${p.name}','16oz',18)">16oz – $18</button>
         </div>
       `;
     });
 }
 
-renderCart();
-loadProducts();
+document.addEventListener("DOMContentLoaded", () => {
+  renderCart();
+  loadShop();
+});
