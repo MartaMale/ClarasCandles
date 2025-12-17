@@ -16,57 +16,46 @@
       <a href="shop.html">Shop</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
-      <button class="cart-button" onclick="toggleCart()">
-        Cart (<span id="cart-count">0</span>)
-      </button>
+      <button class="cart-button" onclick="toggleCart()">Cart (<span id="cart-count">0</span>)</button>
     </nav>
   </div>
 </header>
 
 <main class="container">
   <h2 style="text-align:center;">Shop Candles</h2>
+  <div class="product-grid">
+    <script>
+      const scents = [
+        "Vanilla Buttercream","Cinnamon Stick","Lavender","Pumpkin Spice",
+        "Hansel and Gretel","Honeysuckle Jasmine","Jamaican Me Crazy",
+        "Love Spell","Coconut Lime Verbena","Plumeria","Caramel Popcorn",
+        "Spice Mulberry","Mistletoe","Honeydew Melon","Peppermint",
+        "Apple Harvest","Day At The Spa"
+      ];
 
-  <div class="product-grid" id="product-grid"></div>
+      scents.forEach(name => {
+        document.write(`
+          <div class="product-card">
+            <img src="https://via.placeholder.com/400x400?text=${encodeURIComponent(name)}">
+            <h3>${name}</h3>
+            <button onclick="addToCart('${name}','8oz',12)">8oz – $12</button>
+            <button onclick="addToCart('${name}','16oz',18)">16oz – $18</button>
+          </div>
+        `);
+      });
+    </script>
+  </div>
 </main>
 
-<footer class="site-footer">
-  <p>© 2025 Clara’s Candles</p>
-</footer>
+<footer class="site-footer">© 2025 Clara’s Candles</footer>
 
 <div id="cart-overlay" onclick="closeCart()"></div>
 <div id="cart-drawer">
-  <div class="cart-header">
-    <h3>Your Cart</h3>
-    <button class="cart-close-btn" onclick="closeCart()">✕</button>
-  </div>
+  <h3>Your Cart</h3>
   <div id="cart-items"></div>
   <p id="cart-total"></p>
 </div>
 
 <script src="script.js"></script>
-
-<script>
-  const scents = [
-    "Vanilla Buttercream","Cinnamon Stick","Lavender","Pumpkin Spice",
-    "Hansel and Gretel","Honeysuckle Jasmine","Jamaican Me Crazy",
-    "Love Spell","Coconut Lime Verbena","Plumeria","Caramel Popcorn",
-    "Spice Mulberry","Mistletoe","Honeydew Melon","Peppermint",
-    "Apple Harvest","Day At The Spa"
-  ];
-
-  const grid = document.getElementById("product-grid");
-
-  scents.forEach(name => {
-    grid.innerHTML += `
-      <div class="product-card">
-        <img src="https://via.placeholder.com/400x400?text=${encodeURIComponent(name)}">
-        <h3>${name}</h3>
-        <button onclick="addToCart('${name}','8oz',12)">8oz – $12</button>
-        <button onclick="addToCart('${name}','16oz',18)">16oz – $18</button>
-      </div>
-    `;
-  });
-</script>
-
 </body>
 </html>
