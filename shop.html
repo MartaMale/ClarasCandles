@@ -8,6 +8,45 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .product-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .product-card img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 12px;
+    }
+
+    .product-card h3 {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .product-card button {
+      background: #2e2e2e;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      margin: 6px 4px;
+      border-radius: 20px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 
 <body>
@@ -18,18 +57,7 @@
 
     <nav class="nav-links">
       <a href="index.html">Home</a>
-
-      <div class="shop-dropdown">
-        <a href="shop.html">Shop ▾</a>
-        <div class="dropdown-menu">
-          <a href="shop.html?collection=all">All Candles</a>
-          <a href="shop.html?collection=fall">Fall Collection</a>
-          <a href="shop.html?collection=holiday">Holiday Collection</a>
-          <a href="shop.html?collection=summer">Summer Collection</a>
-          <a href="shop.html?collection=bestsellers">Best Sellers</a>
-        </div>
-      </div>
-
+      <a href="shop.html">Shop</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
 
@@ -41,8 +69,32 @@
 </header>
 
 <main class="container">
-  <h2 class="collection-header" id="collection-title">All Candles</h2>
-  <div id="product-grid" class="product-grid"></div>
+  <h2 style="text-align:center;">Shop Candles</h2>
+
+  <div class="product-grid">
+    <!-- Each product -->
+    <!-- Placeholder images are intentional and easy to swap later -->
+
+    <script>
+      const scents = [
+        "Vanilla Buttercream","Cinnamon Stick","Lavender","Pumpkin Spice",
+        "Hansel and Gretel","Honeysuckle Jasmine","Jamaican Me Crazy",
+        "Love Spell","Coconut Lime Verbena","Plumeria","Caramel Popcorn",
+        "Spice Mulberry","Mistletoe","Honeydew Melon","Peppermint",
+        "Apple Harvest","Day At The Spa"
+      ];
+
+      document.write(scents.map(name => `
+        <div class="product-card">
+          <img src="https://via.placeholder.com/400x400?text=${encodeURIComponent(name)}">
+          <h3>${name}</h3>
+          <button onclick="addToCart('${name}','8oz',12)">8oz – $12</button>
+          <button onclick="addToCart('${name}','16oz',18)">16oz – $18</button>
+        </div>
+      `).join(""));
+    </script>
+
+  </div>
 </main>
 
 <footer class="site-footer">
