@@ -8,62 +8,44 @@
 
 <body>
 
-<header>
-  <h1>Claras Candles</h1>
+<header class="site-header">
+  <div class="header-inner">
+    <h1 class="logo">Clara’s Candles</h1>
+    <nav>
+      <a href="index.html">Home</a>
 
-  <nav class="nav">
-    <a href="index.html">Home</a>
-
-    <div class="shop-menu">
-      <a href="shop.html">Shop</a>
       <div class="dropdown">
-        <a href="shop.html#all">All Candles</a>
-        <a href="shop.html#fall">Fall Collection</a>
-        <a href="shop.html#holiday">Holiday Collection</a>
-        <a href="shop.html#summer">Summer Collection</a>
-        <a href="shop.html#best">Best Sellers</a>
+        <a href="shop.html">Shop</a>
+        <div class="dropdown-menu">
+          <a href="shop.html?collection=all">All Candles</a>
+          <a href="shop.html?collection=fall">Fall Collection</a>
+          <a href="shop.html?collection=holiday">Holiday Collection</a>
+          <a href="shop.html?collection=summer">Summer Collection</a>
+          <a href="shop.html?collection=bestsellers">Best Sellers</a>
+        </div>
       </div>
-    </div>
 
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-
-    <button onclick="toggleCart()">Cart (<span id="cart-count">0</span>)</button>
-  </nav>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <button class="cart-link" onclick="toggleCart()">Cart <span id="cart-count">0</span></button>
+    </nav>
+  </div>
 </header>
 
+<main class="container">
+  <h2>Shop Candles</h2>
+  <div id="products" class="product-grid"></div>
+</main>
 
 <div id="cart-overlay" onclick="closeCart()"></div>
 <div id="cart-drawer">
-  <button class="cart-close" onclick="closeCart()">✕</button>
-  <h3>Your Cart</h3>
+  <div class="cart-header">
+    <h3>Your Cart</h3>
+    <button onclick="closeCart()">✕</button>
+  </div>
   <div id="cart-items"></div>
   <p id="cart-total"></p>
 </div>
-
-<main class="container">
-  <h2>Our Candles</h2>
-
-  <div class="product-grid">
-    <div class="product">
-      <img src="https://via.placeholder.com/250?text=Vanilla+Buttercream">
-      <h3>Vanilla Buttercream</h3>
-      <button onclick="addToCart('Vanilla Buttercream','8oz',12)">8oz – $12</button>
-      <button onclick="addToCart('Vanilla Buttercream','16oz',18)">16oz – $18</button>
-    </div>
-
-    <div class="product">
-      <img src="https://via.placeholder.com/250?text=Cinnamon+Stick">
-      <h3>Cinnamon Stick</h3>
-      <button onclick="addToCart('Cinnamon Stick','8oz',12)">8oz – $12</button>
-      <button onclick="addToCart('Cinnamon Stick','16oz',18)">16oz – $18</button>
-    </div>
-  </div>
-</main>
-
-<footer>
-  <p>© 2025 Clara’s Candles</p>
-</footer>
 
 <script src="script.js"></script>
 </body>
