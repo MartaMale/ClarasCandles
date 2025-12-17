@@ -19,6 +19,7 @@
     <nav class="nav-links">
       <a href="index.html">Home</a>
 
+      <!-- 🔑 FIX: Shop link explicitly goes to shop.html -->
       <div class="shop-dropdown">
         <a href="shop.html">Shop ▾</a>
         <div class="dropdown-menu">
@@ -53,7 +54,7 @@
   <p>Email: clarascandles@email.com</p>
 </footer>
 
-<!-- Cart Drawer -->
+<!-- CART -->
 <div id="cart-overlay" onclick="closeCart()"></div>
 
 <div id="cart-drawer">
@@ -61,7 +62,6 @@
     <h3>Your Cart</h3>
     <button class="cart-close-btn" onclick="closeCart()">✕</button>
   </div>
-
   <div id="cart-items"></div>
   <p id="cart-total"></p>
 </div>
