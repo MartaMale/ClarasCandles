@@ -4,62 +4,39 @@
   <meta charset="UTF-8">
   <title>Clara’s Candles</title>
   <link rel="stylesheet" href="style.css">
-
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<header class="site-header">
+<header>
   <h1>Clara’s Candles</h1>
   <nav>
     <a href="index.html">Home</a>
-
-    <div class="nav-dropdown">
-      <a href="shop.html">Shop ▾</a>
-      <div class="dropdown-menu">
-        <a href="shop.html">All Candles</a>
-        <a href="shop.html?collection=fall">Fall Collection</a>
-        <a href="shop.html?collection=holiday">Holiday Collection</a>
-        <a href="shop.html?collection=summer">Summer Collection</a>
-        <a href="shop.html?collection=best">Best Sellers</a>
-      </div>
-    </div>
-
+    <a href="shop.html">Shop</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
-
-    <button class="cart-button" onclick="toggleCart()">
-      Cart (<span id="cart-count">0</span>)
-    </button>
+    <button onclick="toggleCart()">Cart (<span id="cart-count">0</span>)</button>
   </nav>
 </header>
 
 <div id="cart-overlay" onclick="closeCart()"></div>
-
 <div id="cart-drawer">
   <button class="cart-close" onclick="closeCart()">✕</button>
   <h3>Your Cart</h3>
   <div id="cart-items"></div>
   <p id="cart-total"></p>
-  <a href="#" class="checkout-btn">Checkout</a>
 </div>
 
 <section class="hero">
   <div class="hero-content">
     <h2>Hand-Poured Candles</h2>
-    <p>Clean, cozy, and thoughtfully made.</p>
+    <p>Clean, cozy, thoughtfully made.</p>
     <a href="shop.html" class="button">Shop Candles</a>
   </div>
 </section>
 
 <footer>
   <p>© 2025 Clara’s Candles</p>
-  <p>Email: clarascandles@email.com</p>
-  <p>
-    <a href="#">Instagram</a> ·
-    <a href="#">Facebook</a>
-  </p>
 </footer>
 
 <script src="script.js"></script>
