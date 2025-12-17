@@ -11,9 +11,9 @@ function closeCart() {
 }
 
 function addToCart(name, size, price) {
-  const existing = cart.find(i => i.name === name && i.size === size);
-  if (existing) {
-    existing.qty++;
+  const item = cart.find(i => i.name === name && i.size === size);
+  if (item) {
+    item.qty++;
   } else {
     cart.push({ name, size, price, qty: 1 });
   }
@@ -66,4 +66,4 @@ function renderCart() {
   if (countEl) countEl.textContent = count;
 }
 
-renderCart();
+document.addEventListener("DOMContentLoaded", renderCart);
