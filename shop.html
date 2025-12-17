@@ -2,8 +2,70 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>About – Clara’s Candles</title>
+  <title>Shop – Clara’s Candles</title>
   <link rel="stylesheet" href="style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* SHOP PAGE SPECIFIC OVERRIDES (professional grid like Glow) */
+    .collection-header {
+      text-align: center;
+      margin: 30px 0;
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 600;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+      padding: 20px;
+      text-align: center;
+      transition: transform .2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .product-card img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 12px;
+    }
+
+    .product-card h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .product-card button {
+      background: #2e2e2e;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      margin: 6px 4px;
+      border-radius: 20px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background .2s;
+    }
+
+    .product-card button:hover {
+      background: #444;
+    }
+  </style>
 </head>
 
 <body>
@@ -11,10 +73,12 @@
 <header class="site-header">
   <div class="header-inner">
     <h1 class="logo">Clara’s Candles</h1>
-    <nav>
+
+    <nav class="nav-links">
       <a href="index.html">Home</a>
-      <div class="dropdown">
-        <a href="shop.html">Shop</a>
+
+      <div class="shop-dropdown">
+        <a href="shop.html">Shop ▾</a>
         <div class="dropdown-menu">
           <a href="shop.html?collection=all">All Candles</a>
           <a href="shop.html?collection=fall">Fall Collection</a>
@@ -23,32 +87,81 @@
           <a href="shop.html?collection=bestsellers">Best Sellers</a>
         </div>
       </div>
+
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
-      <button class="cart-link" onclick="toggleCart()">Cart <span id="cart-count">0</span></button>
+
+      <button class="cart-button" onclick="toggleCart()">
+        Cart <span id="cart-count">0</span>
+      </button>
     </nav>
   </div>
 </header>
 
 <main class="container">
-  <h2>About Us</h2>
-  <p>Clara’s Candles was born from a lifetime of service, family, and a love for doing things the right way.</p>
-
-  <p>We’re Marta and Lawrence, and between the two of us we spent nearly 60 years as educators…</p>
-
-  <p><strong>With gratitude,</strong><br>Marta & Lawrence</p>
+  <h2 class="collection-header">All Candles</h2>
+  <div id="product-grid" class="product-grid"></div>
 </main>
 
+<footer class="site-footer">
+  <p>© 2025 Clara’s Candles</p>
+  <p>Email: clarascandles@email.com</p>
+</footer>
+
+<!-- CART -->
 <div id="cart-overlay" onclick="closeCart()"></div>
+
 <div id="cart-drawer">
   <div class="cart-header">
     <h3>Your Cart</h3>
-    <button onclick="closeCart()">✕</button>
+    <button class="cart-close-btn" onclick="closeCart()">✕</button>
   </div>
   <div id="cart-items"></div>
   <p id="cart-total"></p>
 </div>
 
 <script src="script.js"></script>
+
+<script>
+  // Candle product data with placeholder images
+  const allProducts = [
+    { name: "Vanilla Buttercream", img: "https://via.placeholder.com/400x400?text=Vanilla+Buttercream" },
+    { name: "Cinnamon Stick", img: "https://via.placeholder.com/400x400?text=Cinnamon+Stick" },
+    { name: "Lavender", img: "https://via.placeholder.com/400x400?text=Lavender" },
+    { name: "Pumpkin Spice", img: "https://via.placeholder.com/400x400?text=Pumpkin+Spice" },
+    { name: "Hansel and Gretel", img: "https://via.placeholder.com/400x400?text=Hansel+and+Gretel" },
+    { name: "Honeysuckle Jasmine", img: "https://via.placeholder.com/400x400?text=Honeysuckle+Jasmine" },
+    { name: "Jamaican Me Crazy", img: "https://via.placeholder.com/400x400?text=Jamaican+Me+Crazy" },
+    { name: "Love Spell", img: "https://via.placeholder.com/400x400?text=Love+Spell" },
+    { name: "Coconut Lime Verbena", img: "https://via.placeholder.com/400x400?text=Coconut+Lime+Verbena" },
+    { name: "Plumeria", img: "https://via.placeholder.com/400x400?text=Plumeria" },
+    { name: "Caramel Popcorn", img: "https://via.placeholder.com/400x400?text=Caramel+Popcorn" },
+    { name: "Spice Mulberry", img: "https://via.placeholder.com/400x400?text=Spice+Mulberry" },
+    { name: "Mistletoe", img: "https://via.placeholder.com/400x400?text=Mistletoe" },
+    { name: "Honeydew Melon", img: "https://via.placeholder.com/400x400?text=Honeydew+Melon" },
+    { name: "Peppermint", img: "https://via.placeholder.com/400x400?text=Peppermint" },
+    { name: "Apple Harvest", img: "https://via.placeholder.com/400x400?text=Apple+Harvest" },
+    { name: "Day At The Spa", img: "https://via.placeholder.com/400x400?text=Day+At+The+Spa" }
+  ];
+
+  function renderProducts() {
+    const grid = document.getElementById("product-grid");
+    grid.innerHTML = "";
+
+    allProducts.forEach(prod => {
+      grid.innerHTML += `
+        <div class="product-card">
+          <img src="${prod.img}" alt="${prod.name}">
+          <h3>${prod.name}</h3>
+          <button onclick="addToCart('${prod.name} – 8oz', '8oz', 12)">8oz – $12</button>
+          <button onclick="addToCart('${prod.name} – 16oz', '16oz', 18)">16oz – $18</button>
+        </div>
+      `;
+    });
+  }
+
+  renderProducts();
+</script>
+
 </body>
 </html>
