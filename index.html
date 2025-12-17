@@ -16,11 +16,11 @@
   <div class="header-inner">
     <h1 class="logo">Clara’s Candles</h1>
 
-    <nav>
+    <nav class="nav-links">
       <a href="index.html">Home</a>
 
-      <div class="dropdown">
-        <a href="shop.html">Shop</a>
+      <div class="shop-dropdown">
+        <a href="shop.html">Shop ▾</a>
         <div class="dropdown-menu">
           <a href="shop.html?collection=all">All Candles</a>
           <a href="shop.html?collection=fall">Fall Collection</a>
@@ -33,8 +33,8 @@
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
 
-      <button class="cart-link" onclick="toggleCart()">
-        Cart <span id="cart-count" class="cart-count">0</span>
+      <button class="cart-button" onclick="toggleCart()">
+        Cart <span id="cart-count">0</span>
       </button>
     </nav>
   </div>
@@ -42,25 +42,26 @@
 
 <section class="hero">
   <div class="hero-content">
-    <h2>Hand-Poured Candles</h2>
-    <p>Clean, natural candles crafted to make your home feel warm and inviting.</p>
+    <h2>Clean-Burning Hand-Poured Candles</h2>
+    <p>Thoughtfully made with natural soy wax to fill your home with warmth and comfort.</p>
     <a href="shop.html" class="button">Shop Candles</a>
   </div>
 </section>
 
-<footer>
+<footer class="site-footer">
   <p>© 2025 Clara’s Candles</p>
   <p>Email: clarascandles@email.com</p>
 </footer>
 
-<!-- CART -->
+<!-- Cart Drawer -->
 <div id="cart-overlay" onclick="closeCart()"></div>
 
 <div id="cart-drawer">
   <div class="cart-header">
     <h3>Your Cart</h3>
-    <button onclick="closeCart()">✕</button>
+    <button class="cart-close-btn" onclick="closeCart()">✕</button>
   </div>
+
   <div id="cart-items"></div>
   <p id="cart-total"></p>
 </div>
