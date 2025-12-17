@@ -2,78 +2,55 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Contact - Claras Candles</title>
-
+  <title>Contact – Clara’s Candles</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-<header>
-  <h1>Claras Candles</h1>
-
-  <nav class="nav">
-    <a href="index.html">Home</a>
-
-    <div class="shop-menu">
-      <a href="shop.html">Shop</a>
+<header class="site-header">
+  <div class="header-inner">
+    <h1 class="logo">Clara’s Candles</h1>
+    <nav>
+      <a href="index.html">Home</a>
       <div class="dropdown">
-        <a href="shop.html#all">All Candles</a>
-        <a href="shop.html#fall">Fall Collection</a>
-        <a href="shop.html#holiday">Holiday Collection</a>
-        <a href="shop.html#summer">Summer Collection</a>
-        <a href="shop.html#best">Best Sellers</a>
+        <a href="shop.html">Shop</a>
+        <div class="dropdown-menu">
+          <a href="shop.html?collection=all">All Candles</a>
+          <a href="shop.html?collection=fall">Fall Collection</a>
+          <a href="shop.html?collection=holiday">Holiday Collection</a>
+          <a href="shop.html?collection=summer">Summer Collection</a>
+          <a href="shop.html?collection=bestsellers">Best Sellers</a>
+        </div>
       </div>
-    </div>
-
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-
-    <button onclick="toggleCart()">Cart (<span id="cart-count">0</span>)</button>
-  </nav>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <button class="cart-link" onclick="toggleCart()">Cart <span id="cart-count">0</span></button>
+    </nav>
+  </div>
 </header>
 
-
-<div id="cart-overlay" class="cart-overlay" onclick="closeCart()"></div>
-
-<div id="cart-drawer" class="cart-drawer">
-  <button class="cart-close" onclick="closeCart()">✕</button>
-  <h3>Your Cart</h3>
-  <div id="cart-items"></div>
-  <p id="cart-total"></p>
-  <a href="checkout.html" class="button">Checkout</a>
-</div>
-
-<div class="container">
-  <h2>Contact Us</h2>
+<main class="container">
+  <h2>Contact</h2>
 
   <form class="contact-form">
-    <label>First Name *</label>
-    <input type="text" required>
-
-    <label>Last Name</label>
-    <input type="text">
-
-    <label>Email *</label>
-    <input type="email" required>
-
-    <label>Message *</label>
-    <textarea rows="5" required></textarea>
-
-    <button class="button" type="submit">Submit</button>
+    <input type="text" placeholder="First Name *" required>
+    <input type="text" placeholder="Last Name">
+    <input type="email" placeholder="Email *" required>
+    <textarea placeholder="Message *" required></textarea>
+    <button type="submit" class="button">Submit</button>
   </form>
+</main>
 
-  <div style="margin-top:40px;">
-    <p><strong>Email:</strong> clarascandles@email.com</p>
-    <p><strong>Phone:</strong> (555) 123-4567</p>
-    <p>Reach out to us about fundraisers or community events.</p>
+<div id="cart-overlay" onclick="closeCart()"></div>
+<div id="cart-drawer">
+  <div class="cart-header">
+    <h3>Your Cart</h3>
+    <button onclick="closeCart()">✕</button>
   </div>
+  <div id="cart-items"></div>
+  <p id="cart-total"></p>
 </div>
-
-<footer>
-  <p>© 2025 Claras Candles</p>
-</footer>
 
 <script src="script.js"></script>
 </body>
