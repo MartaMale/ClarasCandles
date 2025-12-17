@@ -4,6 +4,126 @@
   <meta charset="UTF-8">
   <title>Contact – Clara’s Candles</title>
   <link rel="stylesheet" href="style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* CONTACT PAGE ONLY */
+    .contact-container {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 0 24px;
+    }
+
+    .contact-header {
+      text-align: center;
+      margin-bottom: 34px;
+    }
+
+    .contact-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .contact-header p {
+      margin: 0;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .contact-card {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.06);
+      padding: 28px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    label {
+      font-size: 14px;
+      color: #333;
+      font-weight: 500;
+    }
+
+    input, textarea {
+      padding: 12px 12px;
+      font-size: 16px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      outline: none;
+      background: #fff;
+      font-family: 'Inter', sans-serif;
+    }
+
+    input:focus, textarea:focus {
+      border-color: #999;
+    }
+
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    .submit-row {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 18px;
+    }
+
+    .submit-btn {
+      background: #333;
+      color: #fff;
+      padding: 12px 22px;
+      border-radius: 10px;
+      border: none;
+      font-weight: 500;
+    }
+
+    .contact-details {
+      margin-top: 28px;
+      padding-top: 18px;
+      border-top: 1px solid #eee;
+      display: grid;
+      gap: 10px;
+      color: #444;
+      line-height: 1.6;
+    }
+
+    .contact-details strong {
+      color: #222;
+    }
+
+    /* Mobile */
+    @media (max-width: 720px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      .submit-row {
+        justify-content: stretch;
+      }
+      .submit-btn {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -11,42 +131,75 @@
 <header class="site-header">
   <div class="header-inner">
     <h1 class="logo">Clara’s Candles</h1>
-    <nav>
+
+    <nav class="nav-links">
       <a href="index.html">Home</a>
-      <div class="dropdown">
-        <a href="shop.html">Shop</a>
-        <div class="dropdown-menu">
-          <a href="shop.html?collection=all">All Candles</a>
-          <a href="shop.html?collection=fall">Fall Collection</a>
-          <a href="shop.html?collection=holiday">Holiday Collection</a>
-          <a href="shop.html?collection=summer">Summer Collection</a>
-          <a href="shop.html?collection=bestsellers">Best Sellers</a>
-        </div>
-      </div>
+      <a href="shop.html">Shop</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
-      <button class="cart-link" onclick="toggleCart()">Cart <span id="cart-count">0</span></button>
+
+      <button class="cart-button" onclick="toggleCart()">
+        Cart (<span id="cart-count">0</span>)
+      </button>
     </nav>
   </div>
 </header>
 
-<main class="container">
-  <h2>Contact</h2>
+<main class="contact-container">
+  <div class="contact-header">
+    <h2>Contact</h2>
+    <p>Have a question, interested in fundraisers, or want to place a custom order? Send us a message and we’ll get back to you soon.</p>
+  </div>
 
-  <form class="contact-form">
-    <input type="text" placeholder="First Name *" required>
-    <input type="text" placeholder="Last Name">
-    <input type="email" placeholder="Email *" required>
-    <textarea placeholder="Message *" required></textarea>
-    <button type="submit" class="button">Submit</button>
-  </form>
+  <div class="contact-card">
+    <form class="contact-form" onsubmit="event.preventDefault(); alert('Thanks! Your message has been sent (demo).');">
+      <div class="contact-grid">
+        <div class="field">
+          <label for="firstName">First Name <span aria-hidden="true">*</span></label>
+          <input id="firstName" name="firstName" type="text" required>
+        </div>
+
+        <div class="field">
+          <label for="lastName">Last Name</label>
+          <input id="lastName" name="lastName" type="text">
+        </div>
+
+        <div class="field full">
+          <label for="email">Email <span aria-hidden="true">*</span></label>
+          <input id="email" name="email" type="email" required>
+        </div>
+
+        <div class="field full">
+          <label for="message">Message <span aria-hidden="true">*</span></label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+      </div>
+
+      <div class="submit-row">
+        <button class="submit-btn" type="submit">Submit</button>
+      </div>
+    </form>
+
+    <div class="contact-details">
+      <div><strong>Email:</strong> clarascandles@email.com</div>
+      <div><strong>Phone:</strong> (555) 555-5555</div>
+      <div><strong>Fundraisers:</strong> Reach out to us about school, team, or community fundraisers — we’d love to partner with you.</div>
+    </div>
+  </div>
 </main>
 
+<footer class="site-footer">
+  <p>© 2025 Clara’s Candles</p>
+  <p>Email: clarascandles@email.com</p>
+</footer>
+
+<!-- CART -->
 <div id="cart-overlay" onclick="closeCart()"></div>
+
 <div id="cart-drawer">
   <div class="cart-header">
     <h3>Your Cart</h3>
-    <button onclick="closeCart()">✕</button>
+    <button class="cart-close-btn" onclick="closeCart()">✕</button>
   </div>
   <div id="cart-items"></div>
   <p id="cart-total"></p>
