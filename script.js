@@ -1,66 +1,71 @@
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-function toggleCart() {
+const products = [
+  { name:"Vanilla Buttercream", collection:"bestsellers" },
+  { name:"Cinnamon Stick", collection:"fall" },
+  { name:"Pumpkin Spice", collection:"fall" },
+  { name:"Mistletoe", collection:"holiday" },
+  { name:"Peppermint", collection:"holiday" },
+  { name:"Coconut Lime Verbena", collection:"summer" },
+  { name:"Lavender", collection:"all" },
+];
+
+function toggleCart(){
   document.getElementById("cart-drawer").classList.toggle("open");
-  document.getElementById("cart-overlay").classList.toggle("open");
-  renderCart();
 }
 
-function closeCart() {
+function closeCart(){
   document.getElementById("cart-drawer").classList.remove("open");
-  document.getElementById("cart-overlay").classList.remove("open");
 }
 
-function addToCart(name) {
-  const item = cart.find(c => c.name === name);
-  if (item) {
-    item.qty++;
-  } else {
-    cart.push({ name, qty: 1 });
-  }
+function addToCart(name){
+  cart.push({name, qty:1, price:18});
   saveCart();
 }
 
-function updateQty(name, change) {
-  const item = cart.find(c => c.name === name);
-  if (!item) return;
-
-  item.qty += change;
-  if (item.qty <= 0) {
-    cart = cart.filter(c => c.name !== name);
-  }
-  saveCart();
-}
-
-function saveCart() {
+function saveCart(){
   localStorage.setItem("cart", JSON.stringify(cart));
   renderCart();
 }
 
-function renderCart() {
-  const container = document.getElementById("cart-items");
-  const count = document.getElementById("cart-count");
-  container.innerHTML = "";
+function renderCart(){
+  const items = document.getElementById("cart-items");
+  const total = document.getElementById("cart-total");
+  if(!items) return;
 
-  let totalItems = 0;
+  items.innerHTML = "";
+  let sum = 0;
 
-  cart.forEach(item => {
-    totalItems += item.qty;
-
-    const div = document.createElement("div");
-    div.className = "cart-item";
-    div.innerHTML = `
-      <span>${item.name}</span>
-      <div>
-        <button onclick="updateQty('${item.name}', -1)">−</button>
-        ${item.qty}
-        <button onclick="updateQty('${item.name}', 1)">+</button>
-      </div>
+  cart.forEach((item,i)=>{
+    items.innerHTML += `
+      <p>${item.name} (${item.qty})</p>
     `;
-    container.appendChild(div);
+    sum += item.price * item.qty;
   });
 
-  count.textContent = totalItems;
+  total.innerText = "Total: $" + sum;
+  document.querySelectorAll("#cart-count").forEach(el=>el.innerText = cart.length);
+}
+
+function loadProducts(){
+  const grid = document.getElementById("products");
+  if(!grid) return;
+
+  const params = new URLSearchParams(window.location.search);
+  const filter = params.get("collection");
+
+  products
+    .filter(p=> !filter || filter==="all" || p.collection===filter)
+    .forEach(p=>{
+      grid.innerHTML += `
+        <div class="product">
+          <img src="https://via.placeholder.com/250">
+          <h3>${p.name}</h3>
+          <button onclick="addToCart('${p.name}')">Add to Cart</button>
+        </div>
+      `;
+    });
 }
 
 renderCart();
+loadProducts();
