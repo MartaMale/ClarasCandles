@@ -1,98 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Shop – Clara’s Candles</title>
-<link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Shop – Clara’s Candles</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header>
+<header class="site-header">
   <h1>Clara’s Candles</h1>
   <nav>
     <a href="index.html">Home</a>
-    <a href="shop.html">Shop</a>
+
+    <div class="nav-dropdown">
+      <a href="shop.html">Shop ▾</a>
+      <div class="dropdown-menu">
+        <a href="shop.html">All Candles</a>
+        <a href="shop.html?collection=fall">Fall Collection</a>
+        <a href="shop.html?collection=holiday">Holiday Collection</a>
+        <a href="shop.html?collection=summer">Summer Collection</a>
+        <a href="shop.html?collection=best">Best Sellers</a>
+      </div>
+    </div>
+
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
-    <button class="cart-button" onclick="toggleCart()">🛒 <span id="cart-count" class="cart-count">0</span></button>
+
+    <button class="cart-button" onclick="toggleCart()">
+      Cart (<span id="cart-count">0</span>)
+    </button>
   </nav>
 </header>
 
-<div id="cart-overlay" class="cart-overlay" onclick="closeCart()"></div>
-<div id="cart-drawer" class="cart-drawer">
+<div id="cart-overlay" onclick="closeCart()"></div>
+<div id="cart-drawer">
   <button class="cart-close" onclick="closeCart()">✕</button>
   <h3>Your Cart</h3>
   <div id="cart-items"></div>
   <p id="cart-total"></p>
-  <a href="checkout.html" class="button">Checkout</a>
 </div>
 
-<section class="container">
-  <h2>Shop Candles</h2>
+<main class="container">
+  <h2>Our Candles</h2>
+  <div id="products" class="product-grid"></div>
+</main>
 
-  <div class="filter-bar">
-    <select id="collectionFilter" onchange="filterProducts()">
-      <option value="all">All Candles</option>
-      <option value="fall">Fall Collection</option>
-      <option value="holiday">Holiday Collection</option>
-      <option value="summer">Summer Collection</option>
-      <option value="best">Best Sellers</option>
-    </select>
-  </div>
-
-  <div class="products" id="products"></div>
-</section>
+<footer>
+  <p>© 2025 Clara’s Candles</p>
+</footer>
 
 <script src="script.js"></script>
-
-<script>
-const productsData = [
-  { name:"Vanilla Buttercream", collection:"best" },
-  { name:"Cinnamon Stick", collection:"fall" },
-  { name:"Lavender", collection:"best" },
-  { name:"Pumpkin Spice", collection:"fall" },
-  { name:"Hansel and Gretel", collection:"holiday" },
-  { name:"Honeysuckle Jasmine", collection:"summer" },
-  { name:"Jamaican Me Crazy", collection:"summer" },
-  { name:"Love Spell", collection:"best" },
-  { name:"Coconut Lime Verbena", collection:"summer" },
-  { name:"Plumeria", collection:"summer" },
-  { name:"Caramel Popcorn", collection:"fall" },
-  { name:"Spice Mulberry", collection:"holiday" },
-  { name:"Mistletoe", collection:"holiday" },
-  { name:"Honeydew Melon", collection:"summer" },
-  { name:"Peppermint", collection:"holiday" },
-  { name:"Apple Harvest", collection:"fall" },
-  { name:"Day At The Spa", collection:"best" }
-];
-
-function displayProducts(filter = "all") {
-  const container = document.getElementById("products");
-  container.innerHTML = "";
-
-  productsData
-    .filter(p => filter === "all" || p.collection === filter)
-    .forEach(p => {
-      container.innerHTML += `
-        <div class="product" data-collection="${p.collection}">
-          <img src="https://via.placeholder.com/300?text=${encodeURIComponent(p.name)}">
-          <h3>${p.name}</h3>
-          <button onclick="addToCart('${p.name}','8oz',12)">8oz – $12</button>
-          <button onclick="addToCart('${p.name}','16oz',18)">16oz – $18</button>
-        </div>
-      `;
-    });
-}
-
-function filterProducts() {
-  const filter = document.getElementById("collectionFilter").value;
-  displayProducts(filter);
-}
-
-displayProducts();
-</script>
-
 </body>
 </html>
