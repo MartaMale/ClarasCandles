@@ -180,3 +180,108 @@ body {
   background: #fff;
   cursor: pointer;
 }
+
+@media (max-width: 768px) {
+
+  body {
+    font-size: 16px;
+  }
+
+  .header-inner {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .nav-links a,
+  .cart-button {
+    font-size: 16px;
+  }
+
+  .hero {
+    padding: 80px 20px;
+    text-align: center;
+  }
+
+  .hero h2 {
+    font-size: 32px;
+    line-height: 1.2;
+  }
+
+  .hero p {
+    font-size: 16px;
+    max-width: 100%;
+  }
+
+  .hero .button {
+    font-size: 16px;
+    padding: 14px 28px;
+  }
+
+  .container,
+  .checkout-container,
+  .contact-container {
+    padding: 40px 20px;
+  }
+
+  .products {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .product h3 {
+    font-size: 18px;
+  }
+
+  .product button {
+    font-size: 14px;
+    padding: 10px 16px;
+  }
+
+  #cart-drawer {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .cart-controls {
+    gap: 12px;
+  }
+
+  .checkout-item {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .square-checkout-btn {
+    font-size: 16px;
+    padding: 16px;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 16px;
+  }
+
+  .contact-form button {
+    font-size: 16px;
+    padding: 16px;
+  }
+
+  footer {
+    font-size: 14px;
+    text-align: center;
+    padding: 24px 16px;
+  }
+}
