@@ -40,6 +40,13 @@
       font-size: 18px;
     }
 
+    .checkout-note {
+      font-size: 14px;
+      color: #555;
+      margin-top: 12px;
+      line-height: 1.5;
+    }
+
     .square-checkout-btn {
       display: block;
       width: 100%;
@@ -50,7 +57,7 @@
       border-radius: 30px;
       font-size: 18px;
       text-decoration: none;
-      margin-top: 20px;
+      margin-top: 24px;
     }
 
     .square-checkout-btn:hover {
@@ -89,6 +96,12 @@
     <h3>Order Summary</h3>
     <div id="order-summary"></div>
     <div id="order-total" class="checkout-total"></div>
+
+    <p class="checkout-note">
+      You will be redirected to Square to complete payment.  
+      Please enter the <strong>exact total shown above</strong> when prompted.  
+      Your order details (scents, sizes, quantities) will be sent automatically.
+    </p>
   </div>
 
   <a
@@ -125,7 +138,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const totalEl = document.getElementById("order-total");
   const checkoutBtn = document.getElementById("squareCheckoutBtn");
 
-  const BASE_SQUARE_URL = "https://square.link/u/TEDQ69Wq";
+  // ✨ YOUR NEW SQUARE LINK
+  const BASE_SQUARE_URL = "https://square.link/u/tPZg3dZQ";
 
   let total = 0;
   let noteLines = [];
