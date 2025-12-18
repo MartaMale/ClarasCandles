@@ -98,9 +98,9 @@
     <div id="order-total" class="checkout-total"></div>
 
     <p class="checkout-note">
-      You will be redirected to Square to complete payment.  
-      Please enter the <strong>exact total shown above</strong> when prompted.  
-      Your order details (scents, sizes, quantities) will be sent automatically.
+      You will be redirected to Square to complete payment.
+      Please enter the <strong>exact total shown above</strong>.
+      Your order details will be attached to your payment.
     </p>
   </div>
 
@@ -138,11 +138,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const totalEl = document.getElementById("order-total");
   const checkoutBtn = document.getElementById("squareCheckoutBtn");
 
-  // ✨ YOUR NEW SQUARE LINK
   const BASE_SQUARE_URL = "https://square.link/u/tPZg3dZQ";
 
   let total = 0;
-  let noteLines = [];
+  let referenceParts = [];
 
   if (!cart.length) {
     summaryEl.innerHTML =
@@ -163,15 +162,14 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `;
 
-    noteLines.push(`${qty}× ${item.name} (${item.size})`);
+    referenceParts.push(`${qty}x ${item.name} (${item.size})`);
   });
 
   totalEl.innerText = `Total: $${total.toFixed(2)}`;
+  referenceParts.push(`Total $${total.toFixed(2)}`);
 
-  noteLines.push(`Total: $${total.toFixed(2)}`);
-
-  const noteParam = encodeURIComponent(noteLines.join(" | "));
-  checkoutBtn.href = `${BASE_SQUARE_URL}?note=${noteParam}`;
+  const referenceId = encodeURIComponent(referenceParts.join(" | "));
+  checkoutBtn.href = `${BASE_SQUARE_URL}?referenceId=${referenceId}`;
 });
 </script>
 
