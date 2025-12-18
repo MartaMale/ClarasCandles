@@ -49,19 +49,20 @@
       resize: vertical;
     }
 
-    .checkout-button {
+    .square-checkout-btn {
+      display: block;
       width: 100%;
-      padding: 14px;
+      padding: 16px;
+      text-align: center;
       background: #000;
       color: #fff;
-      border: none;
       border-radius: 30px;
       font-size: 18px;
-      cursor: pointer;
+      text-decoration: none;
       margin-top: 20px;
     }
 
-    .checkout-button:hover {
+    .square-checkout-btn:hover {
       opacity: 0.9;
     }
 
@@ -120,9 +121,15 @@
     <textarea id="gift-note" placeholder="Gift note" style="display:none;"></textarea>
   </div>
 
-  <button class="checkout-button" onclick="redirectToSquare()">
+  <!-- DIRECT SQUARE LINK -->
+  <a
+    href="https://square.link/u/TEDQ69Wq"
+    class="square-checkout-btn"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
     Secure Checkout with Square
-  </button>
+  </a>
 </main>
 
 <footer class="site-footer">
@@ -147,8 +154,6 @@
   const summary = document.getElementById("order-summary");
   const totalEl = document.getElementById("order-total");
 
-  const SQUARE_CHECKOUT_URL = "https://square.link/u/TEDQ69Wq";
-
   let total = 0;
 
   if (cart.length === 0) {
@@ -170,18 +175,6 @@
     document.getElementById("gift-note").style.display =
       e.target.checked ? "block" : "none";
   });
-
-  function redirectToSquare() {
-    if (cart.length === 0) {
-      alert("Your cart is empty.");
-      return;
-    }
-
-    // Optional: You could add query params here if you want to
-    // pass total or other data in URL, but Square handles totals itself.
-
-    window.location.href = SQUARE_CHECKOUT_URL;
-  }
 </script>
 
 </body>
