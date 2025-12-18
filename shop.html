@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <title>Shop – Clara’s Candles</title>
   <link rel="stylesheet" href="style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -11,47 +15,103 @@
 <header class="site-header">
   <div class="header-inner">
     <h1 class="logo">Clara’s Candles</h1>
+
     <nav class="nav-links">
       <a href="index.html">Home</a>
       <a href="shop.html">Shop</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact</a>
-      <button class="cart-button" onclick="toggleCart()">Cart (<span id="cart-count">0</span>)</button>
+
+      <button class="cart-button" onclick="toggleCart()">
+        Cart (<span id="cart-count">0</span>)
+      </button>
     </nav>
   </div>
 </header>
 
 <main class="container">
   <h2 style="text-align:center;">Shop Candles</h2>
-  <div class="product-grid">
-    <script>
-      const scents = [
-        "Vanilla Buttercream","Cinnamon Stick","Lavender","Pumpkin Spice",
-        "Hansel and Gretel","Honeysuckle Jasmine","Jamaican Me Crazy",
-        "Love Spell","Coconut Lime Verbena","Plumeria","Caramel Popcorn",
-        "Spice Mulberry","Mistletoe","Honeydew Melon","Peppermint",
-        "Apple Harvest","Day At The Spa"
-      ];
 
-      scents.forEach(name => {
-        document.write(`
-          <div class="product-card">
-            <img src="https://via.placeholder.com/400x400?text=${encodeURIComponent(name)}">
-            <h3>${name}</h3>
-            <button onclick="addToCart('${name}','8oz',12)">8oz – $12</button>
-            <button onclick="addToCart('${name}','16oz',18)">16oz – $18</button>
-          </div>
-        `);
-      });
-    </script>
+  <div class="product-grid">
+
+    <!-- VANILLA BUTTERCREAM -->
+    <div class="product-card">
+      <a href="vanilla-buttercream.html" style="text-decoration:none; color:inherit;">
+        <img src="https://via.placeholder.com/400x400?text=Vanilla+Buttercream" alt="Vanilla Buttercream Candle">
+        <h3>Vanilla Buttercream</h3>
+      </a>
+
+      <button onclick="addToCart('Vanilla Buttercream','8oz',12)">
+        Add 8oz – $12
+      </button>
+      <button onclick="addToCart('Vanilla Buttercream','16oz',18)">
+        Add 16oz – $18
+      </button>
+    </div>
+
+    <!-- CINNAMON STICK -->
+    <div class="product-card">
+      <a href="cinnamon-stick.html" style="text-decoration:none; color:inherit;">
+        <img src="https://via.placeholder.com/400x400?text=Cinnamon+Stick" alt="Cinnamon Stick Candle">
+        <h3>Cinnamon Stick</h3>
+      </a>
+
+      <button onclick="addToCart('Cinnamon Stick','8oz',12)">
+        Add 8oz – $12
+      </button>
+      <button onclick="addToCart('Cinnamon Stick','16oz',18)">
+        Add 16oz – $18
+      </button>
+    </div>
+
+    <!-- LAVENDER -->
+    <div class="product-card">
+      <a href="lavender.html" style="text-decoration:none; color:inherit;">
+        <img src="https://via.placeholder.com/400x400?text=Lavender" alt="Lavender Candle">
+        <h3>Lavender</h3>
+      </a>
+
+      <button onclick="addToCart('Lavender','8oz',12)">
+        Add 8oz – $12
+      </button>
+      <button onclick="addToCart('Lavender','16oz',18)">
+        Add 16oz – $18
+      </button>
+    </div>
+
+    <!-- PUMPKIN SPICE -->
+    <div class="product-card">
+      <a href="pumpkin-spice.html" style="text-decoration:none; color:inherit;">
+        <img src="https://via.placeholder.com/400x400?text=Pumpkin+Spice" alt="Pumpkin Spice Candle">
+        <h3>Pumpkin Spice</h3>
+      </a>
+
+      <button onclick="addToCart('Pumpkin Spice','8oz',12)">
+        Add 8oz – $12
+      </button>
+      <button onclick="addToCart('Pumpkin Spice','16oz',18)">
+        Add 16oz – $18
+      </button>
+    </div>
+
+    <!-- ADD REMAINING SCENTS THE SAME WAY -->
+
   </div>
 </main>
 
-<footer class="site-footer">© 2025 Clara’s Candles</footer>
+<footer class="site-footer">
+  <p>© 2025 Clara’s Candles</p>
+</footer>
 
+<!-- CART -->
 <div id="cart-overlay" onclick="closeCart()"></div>
+
 <div id="cart-drawer">
-  <h3>Your Cart</h3>
+  <div class="cart-header">
+    <h3>Your Cart</h3>
+    <button onclick="closeCart()">✕</button>
+  </div>
+
   <div id="cart-items"></div>
   <p id="cart-total"></p>
 </div>
