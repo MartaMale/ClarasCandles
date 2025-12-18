@@ -285,3 +285,57 @@ body {
     padding: 24px 16px;
   }
 }
+
+@media (max-width: 768px) {
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  #cart-drawer {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 90%;
+    max-width: 360px;
+    height: 100vh;
+    background: #fff;
+    z-index: 1001;
+    padding: 20px;
+    overflow-y: auto;
+    transition: right 0.3s ease;
+  }
+
+  #cart-drawer.open {
+    right: 0;
+  }
+
+  .cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+
+  .cart-header button {
+    font-size: 22px;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  #cart-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    z-index: 1000;
+  }
+
+  #cart-overlay.open {
+    display: block;
+  }
+}
