@@ -100,7 +100,7 @@
     <p class="checkout-note">
       You will be redirected to Square to complete payment.
       Please enter the <strong>exact total shown above</strong>.
-      Your order details will be attached to your payment.
+      Your order details will appear in the payment description.
     </p>
   </div>
 
@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const BASE_SQUARE_URL = "https://square.link/u/tPZg3dZQ";
 
   let total = 0;
-  let referenceParts = [];
+  let descriptionParts = [];
 
   if (!cart.length) {
     summaryEl.innerHTML =
@@ -162,14 +162,17 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `;
 
-    referenceParts.push(`${qty}x ${item.name} (${item.size})`);
+    descriptionParts.push(`${qty}x ${item.name} (${item.size})`);
   });
 
   totalEl.innerText = `Total: $${total.toFixed(2)}`;
-  referenceParts.push(`Total $${total.toFixed(2)}`);
+  descriptionParts.push(`Total $${total.toFixed(2)}`);
 
-  const referenceId = encodeURIComponent(referenceParts.join(" | "));
-  checkoutBtn.href = `${BASE_SQUARE_URL}?referenceId=${referenceId}`;
+  const description = encodeURIComponent(
+    "ORDER – " + descriptionParts.join(", ")
+  );
+
+  checkoutBtn.href = `${BASE_SQUARE_URL}?description=${description}`;
 });
 </script>
 
