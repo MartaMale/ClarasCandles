@@ -40,15 +40,6 @@
       font-size: 18px;
     }
 
-    textarea {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      resize: vertical;
-    }
-
     .square-checkout-btn {
       display: block;
       width: 100%;
@@ -60,6 +51,7 @@
       font-size: 18px;
       text-decoration: none;
       margin-top: 20px;
+      cursor: pointer;
     }
 
     .square-checkout-btn:hover {
@@ -100,34 +92,7 @@
     <div id="order-total" class="checkout-total"></div>
   </div>
 
-  <div class="checkout-section">
-    <h3>Delivery Method</h3>
-    <label>
-      <input type="radio" name="delivery" checked>
-      Local Pickup
-    </label><br><br>
-    <label>
-      <input type="radio" name="delivery">
-      Shipping
-    </label>
-  </div>
-
-  <div class="checkout-section">
-    <h3>Gift Options</h3>
-    <label>
-      <input type="checkbox" id="gift-checkbox">
-      This is a gift
-    </label>
-    <textarea id="gift-note" placeholder="Gift note" style="display:none;"></textarea>
-  </div>
-
-  <!-- DIRECT SQUARE LINK -->
-  <a
-    href="https://square.link/u/TEDQ69Wq"
-    class="square-checkout-btn"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
+  <a id="squareCheckoutBtn" class="square-checkout-btn">
     Secure Checkout with Square
   </a>
 </main>
@@ -151,30 +116,42 @@
 
 <script>
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
-  const summary = document.getElementById("order-summary");
+  const summaryEl = document.getElementById("order-summary");
   const totalEl = document.getElementById("order-total");
+  const checkoutBtn = document.getElementById("squareCheckoutBtn");
+
+  const BASE_SQUARE_URL = "https://square.link/u/TEDQ69Wq";
 
   let total = 0;
+  let noteLines = [];
 
   if (cart.length === 0) {
-    summary.innerHTML = `<div class="empty-cart">Your cart is empty.</div>`;
+    summaryEl.innerHTML = `<div class="empty-cart">Your cart is empty.</div>`;
+    checkoutBtn.style.display = "none";
   } else {
     cart.forEach(item => {
-      summary.innerHTML += `
+      const lineTotal = item.qty * item.price;
+      total += lineTotal;
+
+      summaryEl.innerHTML += `
         <div class="checkout-item">
           <span>${item.qty} × ${item.name} (${item.size})</span>
-          <span>$${(item.qty * item.price).toFixed(2)}</span>
+          <span>$${lineTotal.toFixed(2)}</span>
         </div>
       `;
-      total += item.qty * item.price;
-    });
-    totalEl.innerText = `Total: $${total.toFixed(2)}`;
-  }
 
-  document.getElementById("gift-checkbox").addEventListener("change", e => {
-    document.getElementById("gift-note").style.display =
-      e.target.checked ? "block" : "none";
-  });
+      noteLines.push(`${item.qty}× ${item.name} (${item.size})`);
+    });
+
+    totalEl.innerText = `Total: $${total.toFixed(2)}`;
+
+    noteLines.push(`Total: $${total.toFixed(2)}`);
+
+    const noteParam = encodeURIComponent(noteLines.join(" | "));
+    checkoutBtn.href = `${BASE_SQUARE_URL}?note=${noteParam}`;
+    checkoutBtn.target = "_blank";
+    checkoutBtn.rel = "noopener noreferrer";
+  }
 </script>
 
 </body>
