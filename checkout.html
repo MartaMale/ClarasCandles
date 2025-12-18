@@ -51,7 +51,6 @@
       font-size: 18px;
       text-decoration: none;
       margin-top: 20px;
-      cursor: pointer;
     }
 
     .square-checkout-btn:hover {
@@ -92,7 +91,12 @@
     <div id="order-total" class="checkout-total"></div>
   </div>
 
-  <a id="squareCheckoutBtn" class="square-checkout-btn">
+  <a
+    id="squareCheckoutBtn"
+    class="square-checkout-btn"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
     Secure Checkout with Square
   </a>
 </main>
@@ -115,6 +119,7 @@
 <script src="script.js"></script>
 
 <script>
+document.addEventListener("DOMContentLoaded", () => {
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
   const summaryEl = document.getElementById("order-summary");
   const totalEl = document.getElementById("order-total");
@@ -125,33 +130,35 @@
   let total = 0;
   let noteLines = [];
 
-  if (cart.length === 0) {
-    summaryEl.innerHTML = `<div class="empty-cart">Your cart is empty.</div>`;
+  if (!cart.length) {
+    summaryEl.innerHTML =
+      `<div class="empty-cart">Your cart is empty.</div>`;
     checkoutBtn.style.display = "none";
-  } else {
-    cart.forEach(item => {
-      const lineTotal = item.qty * item.price;
-      total += lineTotal;
-
-      summaryEl.innerHTML += `
-        <div class="checkout-item">
-          <span>${item.qty} × ${item.name} (${item.size})</span>
-          <span>$${lineTotal.toFixed(2)}</span>
-        </div>
-      `;
-
-      noteLines.push(`${item.qty}× ${item.name} (${item.size})`);
-    });
-
-    totalEl.innerText = `Total: $${total.toFixed(2)}`;
-
-    noteLines.push(`Total: $${total.toFixed(2)}`);
-
-    const noteParam = encodeURIComponent(noteLines.join(" | "));
-    checkoutBtn.href = `${BASE_SQUARE_URL}?note=${noteParam}`;
-    checkoutBtn.target = "_blank";
-    checkoutBtn.rel = "noopener noreferrer";
+    return;
   }
+
+  cart.forEach(item => {
+    const qty = item.qty || 1;
+    const lineTotal = qty * item.price;
+    total += lineTotal;
+
+    summaryEl.innerHTML += `
+      <div class="checkout-item">
+        <span>${qty} × ${item.name} (${item.size})</span>
+        <span>$${lineTotal.toFixed(2)}</span>
+      </div>
+    `;
+
+    noteLines.push(`${qty}× ${item.name} (${item.size})`);
+  });
+
+  totalEl.innerText = `Total: $${total.toFixed(2)}`;
+
+  noteLines.push(`Total: $${total.toFixed(2)}`);
+
+  const noteParam = encodeURIComponent(noteLines.join(" | "));
+  checkoutBtn.href = `${BASE_SQUARE_URL}?note=${noteParam}`;
+});
 </script>
 
 </body>
